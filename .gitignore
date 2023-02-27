@@ -1,0 +1,5 @@
+api/env
+api/db.sqlite*
+api/public/assets
+api/public/static
+api/public/media

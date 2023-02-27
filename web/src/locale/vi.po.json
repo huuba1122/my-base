@@ -1,0 +1,24 @@
+{
+  "charset": "utf-8",
+  "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Plural-Forms": "nplurals = 1; plural = 0;",
+    "Language": "vi",
+    "MIME-Version": "1.0",
+    "Content-Transfer-Encoding": "8bit"
+  },
+  "translations": {
+    "": {
+      "": {
+        "msgid": "",
+        "msgstr": [
+          "Content-Type: text/plain; charset=utf-8\nPlural-Forms: nplurals = 1; plural = 0;\nLanguage: vi\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\n"
+        ]
+      },
+      "Home Page": { "msgid": "Home Page", "msgstr": ["Trang chủ"] },
+      "Search": { "msgid": "Search", "msgstr": ["Tìm kiếm"] },
+      "Search post": { "msgid": "Search post", "msgstr": ["Tìm bài viết"] },
+      "Post List": { "msgid": "Post List", "msgstr": ["Danh sách bài viết"] }
+    }
+  }
+}
