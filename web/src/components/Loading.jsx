@@ -1,5 +1,12 @@
 import React from 'react';
 
-export default function Loading() {
-  return <div>Loading...</div>;
+// antd
+import { Spin } from 'antd';
+
+export default function LocalSpiner() {
+  return (
+    <div className="global-spiner">
+      <Spin />
+    </div>
+  );
 }

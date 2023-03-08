@@ -44,7 +44,8 @@ class JWTUtils:
         try:
             access_token = RefreshToken(refresh_token).access_token
             return str(access_token)
-        except Exception:
+        except Exception as e:
+            print(repr(e))
             return ""
 
     @staticmethod

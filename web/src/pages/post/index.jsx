@@ -1,8 +1,7 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 // recoil state
-import { postListState } from '@recoil/atoms/post';
-import PostForm from './form';
+import { postListState } from '@src/recoil/post';
 
 import './index.css';
 
@@ -19,27 +18,8 @@ function Post() {
     setDescription('');
   };
 
-  const addNewPost = () => {
-    // const new
-    newId += 1;
-    const id = newId;
-    const newPost = { id, title, description };
-
-    setPostList([newPost, ...postList]);
-    clearForm();
-  };
-
-  const handleChangePost = (data) => {
-    console.log('change post data: ', { data });
-  };
-
   return (
     <div className="post">
-      <div className="add-post">
-        <h2>Form Create new post</h2>
-        <PostForm onChange={handleChangePost} />
-      </div>
-
       <div className="border-2 mt-2">
         <h2>Post List</h2>
         {postList && postList.length ? (

@@ -8,11 +8,11 @@ from rest_framework.response import Response
 
 
 from services.drf_classes.custom_permission import CustomPermission
+from modules.account.role.helpers.utils import RoleUtils
 
 from ..models import Staff
 from ..helpers.utils import StaffUtils
 from ..helpers.srs import StaffSr
-
 
 class StaffViewSet(GenericViewSet):
 
@@ -29,6 +29,9 @@ class StaffViewSet(GenericViewSet):
 
         result = {
             "items": serializer.data,
+            "extra": {
+                "groups": RoleUtils.get_list_group(),
+            },
         }
 
         return self.get_paginated_response(result)

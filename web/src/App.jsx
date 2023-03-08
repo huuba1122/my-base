@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { BrowserRouter } from 'react-router-dom';
 
 // state
-import { localeState } from '@recoil/atoms/locale';
+import { localeState } from '@src/recoil/locale';
 import { profileSt } from '@recoil/user/profile';
 
 // app services
@@ -26,9 +26,7 @@ function App() {
 
   const fetchProfile = () => {
     const token = StorageService.getToken();
-    console.log({ token, profile });
     if (!token || !Utils.isBlankObj(profile)) return;
-    console.log('fetch profile: ', Utils.isBlankObj(profile));
     fetchUserProfile().then(setProfile).catch(console.log);
   };
 
@@ -40,6 +38,8 @@ function App() {
       fetchProfile();
     });
   }, []);
+
+  console.log('render app');
 
   if (!dataLoaded) {
     return <div>Loading...</div>;

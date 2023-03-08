@@ -11,8 +11,6 @@ class CustomPagination(pagination.PageNumberPagination):
         next_link = self.get_next_link()
         previous_link = self.get_previous_link()
 
-        print('custom page pagination')
-
         count = self.page.paginator.count
         pages = ceil(count / self.page_size)
 

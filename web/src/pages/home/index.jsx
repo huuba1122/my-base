@@ -3,18 +3,15 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import { t } from 'ttag';
 
 // recoil
-import { postListFilterState } from '@recoil/atoms/post';
-import { filteredPostListSelector } from '@recoil/selectors/post';
+// import { filteredPostListSelector, postListFilterState } from '@recoil/post';
 
 // hooks
-import useDebounce from '@hooks/common/useDebounce';
+import useDebounce from '@src/shared/common/useDebounce';
 
-// components
-import ToggleButton from '@components/toggle_btn';
 // ----------------------------------------------------------------
 function HomePage() {
-  const [filter, setFilter] = useRecoilState(postListFilterState);
-  const filteredPostList = useRecoilValue(filteredPostListSelector);
+  const [filter, setFilter] = React.useState('');
+  const filteredPostList = [];
 
   const [search, setSearch] = React.useState(filter);
   const searchDebounce = useDebounce(search, 500);
@@ -51,10 +48,6 @@ function HomePage() {
           <span>Chưa có bài viết</span>
         )}
       </div>
-      <div>
-        <ToggleButton />
-      </div>
-      {/* <button onClick={pingHandler}>Ping</button> */}
     </div>
   );
 }

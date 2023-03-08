@@ -1,38 +1,60 @@
 import React, { useEffect, useState } from 'react';
 import { t } from 'ttag';
-import { useSetRecoilState } from 'recoil';
-import { Row, Col, Table, Tooltip, Space } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { useRecoilState } from 'recoil';
 
-// request
-import axios from '@services/api/axios';
+// ant
+import { Table, Space, notification } from 'antd';
 
+// apps
+import { fetchStaffs, deleteStaff } from '@src/services/api/staff';
+import { staffSt } from '@src/recoil/user';
+
+import { AddNewBtn, EditBtn, RemoveBtn } from '@src/components/comon/buttons';
+import Pagination from '@components/comon/table/pagination';
+import Dialog from '../dialog';
 // ----------------------------------------------------------------
 export default function StaffTable() {
-  const [list, setList] = useState([]);
+  const dialogRef = React.useRef(null);
+
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [staffState, setStaffState] = useRecoilState(staffSt);
+  const { items = [], count = 0, page_size: pageSize } = staffState;
 
   const getListUsers = (params) => {
-    console.log(' fetch user');
     setLoading(true);
-    axios
-      .get('/account/staff/', params)
-      .then((res) => setList(res.items))
+    fetchStaffs(params)
+      .then(setStaffState)
       .finally(() => setLoading(false));
   };
 
   useEffect(() => {
-    getListUsers();
-  }, []);
+    getListUsers({ page });
+  }, [page]);
 
   const onDelete = (id) => {
-    getListUsers();
-    console.log('delete', id);
+    deleteStaff(id)
+      .then(() => {
+        const newItems = items.filter((item) => item.id !== id);
+        setStaffState({ ...staffState, items: newItems });
+        notification.success({ message: 'Deleted role successfully!' });
+      })
+      .catch((err) => {
+        console.error(err);
+        notification.error({ message: 'Deleted role failed!' });
+      });
   };
 
-  const onUpdate = (id) => {
-    console.log('update', id);
+  const toggleDialog = (id = 0) => {
+    dialogRef.current.toggleModal(id);
   };
+
+  const onChange = (id, data) => {
+    const newItems = id ? items.map((item) => (item.id === id ? data : item)) : [{ ...data }, ...items];
+    setStaffState({ ...staffState, items: newItems });
+  };
+
+  const handleChangePage = (page) => setPage(page);
 
   const columns = [
     {
@@ -47,7 +69,7 @@ export default function StaffTable() {
     },
     {
       key: 'phone_number',
-      title: t`phone_number`,
+      title: t`Phone number`,
       dataIndex: 'phone_number'
     },
     {
@@ -57,18 +79,24 @@ export default function StaffTable() {
       width: 90,
       render: (_text, record) => (
         <Space size="middle">
-          <Tooltip title={t`Edit`} trigger="hover">
-            <EditOutlined onClick={() => onUpdate(record.id)} />
-          </Tooltip>
-          <Tooltip title={t`Delete`} trigger="hover">
-            <DeleteOutlined onClick={() => onDelete(record.id)} />
-          </Tooltip>
+          <EditBtn onClick={() => toggleDialog(record.id)} />
+          <RemoveBtn onConfirm={() => onDelete(record.id)} />
         </Space>
       )
     }
   ];
 
-  return <Table rowKey="id" columns={columns} dataSource={list} loading={loading} scroll={{ x: 1000 }} />;
+  return (
+    <div>
+      <div className="table-action">
+        <AddNewBtn onClick={() => toggleDialog(0)} />
+      </div>
+
+      <Table rowKey="id" columns={columns} dataSource={items} loading={loading} pagination={false} />
+      <Pagination page={page} total={count} pageSize={pageSize} onChange={handleChangePage} />
+      <Dialog onChange={onChange} ref={dialogRef} />
+    </div>
+  );
 }
 
 StaffTable.displayName = 'StaffTable';

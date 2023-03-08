@@ -175,7 +175,7 @@ SIMPLE_JWT = {
 REST_FRAMEWORK = {
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     "DEFAULT_PAGINATION_CLASS": "services.drf_classes.custom_pagination.CustomPagination",
-    "PAGE_SIZE": 15,
+    "PAGE_SIZE": 5,
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
@@ -195,8 +195,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'hhb.bka@gmail.com'
-EMAIL_HOST_PASSWORD = 'hukfcpgyxrjmoyhh' # on mac
-# EMAIL_HOST_PASSWORD = 'pmiyjhrysiiepthu' # on ubuntu
+# EMAIL_HOST_PASSWORD = 'gtuerkvglbkvituh' # on ubuntu
+EMAIL_HOST_PASSWORD = 'kjvnxkyzhdrejlhi' # on mac
 
 # NOTI
 DEFAULT_VERIFY_CODE_EXPIRED_PERIOD = 90  # seconds

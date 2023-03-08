@@ -1,12 +1,15 @@
 import React from 'react';
 import { t } from 'ttag';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 // antd
 import { Button, Row, Col, Checkbox, Card, Typography } from 'antd';
 
 // app
 import { PRIVATE_PATHS } from '@routes/path';
-import axios from '@src/services/api/axios';
+import { fetchUserProfile } from '@services/api/auth';
+import { profileSt } from '@recoil/user/profile';
+//
 import FormLogin from './form';
 
 const { Title } = Typography;
@@ -15,11 +18,14 @@ const { Title } = Typography;
 function Login() {
   const navigate = useNavigate();
   const [remember, setRemember] = React.useState(true);
+  const setUserProfileSt = useSetRecoilState(profileSt);
 
   const handleLogin = (data) => {
-    const url = PRIVATE_PATHS.staff.root;
-    console.log({ url });
-    navigate(url);
+    fetchUserProfile().then((user) => {
+      const url = PRIVATE_PATHS.root;
+      navigate(url);
+      setUserProfileSt(user);
+    });
   };
 
   return (

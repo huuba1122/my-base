@@ -11,10 +11,10 @@ from rest_framework.viewsets import GenericViewSet
 # app
 from services.drf_classes.custom_permission import CustomPermission
 from modules.articles.attachment.helpers.utils import AttachmentUtils
+from modules.articles.category.helpers.utils import CategoryUtils
 from modules.articles.post.models import Post
 from ..helpers.srs import PostSrs
 from ..helpers.utils import PostUtils
-
 class PostViewSet(GenericViewSet):
     _name="post"
     permission_classes=(CustomPermission,)
@@ -26,9 +26,14 @@ class PostViewSet(GenericViewSet):
         queryset = self.filter_queryset(queryset)
         queryset = self.paginate_queryset(queryset)
         serializer = PostSrs(queryset, many=True)
+        result = {
+            "items": serializer.data,
+            "extra": {
+                "categories": CategoryUtils.get_category_options(),
+            },
+        }
 
-        return self.get_paginated_response(serializer.data)
-    
+        return self.get_paginated_response(result)
 
     def retrieve(self, request, pk=None):
         obj = get_object_or_404(Post, pk=pk)
@@ -62,5 +67,12 @@ class PostViewSet(GenericViewSet):
     def delete(self, request, pk=None):
         obj = get_object_or_404(Post, pk=pk)
         obj.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(methods=['delete'], detail=True)
+    def remove_banner(self, request, pk=None):
+        obj = get_object_or_404(Post, pk=pk)
+        obj.banner.delete(save=True)
 
         return Response(status=status.HTTP_204_NO_CONTENT)

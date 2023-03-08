@@ -6,6 +6,7 @@ import Form from './form';
 // ----------------------------------------------------------------
 const OTPDialog = React.forwardRef(({ onChange }, ref) => {
   const [open, setOpen] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   const handleToggle = () => setOpen((pre) => !pre);
 
@@ -26,8 +27,10 @@ const OTPDialog = React.forwardRef(({ onChange }, ref) => {
       open={open}
       // onOk={handleOk}
       onCancel={handleCancel}
-      okButtonProps={{ form: Form.formName, key: 'submit', htmlType: 'submit' }}>
-      <Form onChange={onChange} />
+      confirmLoading={loading}
+      okButtonProps={{ form: Form.formName, key: 'submit', htmlType: 'submit' }}
+    >
+      <Form onChange={onChange} onLoading={setLoading} />
     </Modal>
   );
 });

@@ -36,7 +36,7 @@ class EmailUtils:
             email.attach_alternative(body, 'text/html')
             return email.send()
         except Exception as e:
-            print('Error sending email', e)
+            print('Error sending email', repr(e))
             return e
     
     @staticmethod

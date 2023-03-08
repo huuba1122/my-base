@@ -9,7 +9,7 @@
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
       "@services/*": ["src/services/*"],
-      "@hooks/*": ["src/hooks/*"],
+      "@hooks/*": ["src/shared/*"],
       "@contexts/*": ["src/contexts/*"],
       "@recoil/*": ["src/recoil/*"],
       "@routes/*": ["src/routes/*"]

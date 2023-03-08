@@ -21,7 +21,6 @@ a:hover {
   min-height: 100vh;
 }
 
-
 .mt-1 {
   margin-top: 8px;
 }
@@ -45,9 +44,19 @@ a:hover {
 .border-bottom-2 {
   border-bottom: 2px solid #ccc;
 }
+
+.mt-2 {
+  margin-top: 16px;
+}
+
+.mt-3 {
+  margin-top: 24px;
+}
+
 .p-2 {
   padding: 16px;
 }
+
 .pl-2 {
   padding-left: 16px;
 }
@@ -60,6 +69,23 @@ a:hover {
   width: 100%;
 }
 
-.wrap-form{
-  
+.wrap-form {
+}
+
+.table-action {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  padding-bottom: 8px;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+.space-around {
+  justify-content: space-around;
 }

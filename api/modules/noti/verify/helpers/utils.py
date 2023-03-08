@@ -63,7 +63,7 @@ class VerifyUtils:
     def create_and_send_otp_reset_password(target):
         try:
             verify = VerifyUtils.create(target)
-            VerifyUtils.send_otp_reset_password(verify.code, target)
+            VerifyUtils.send_otp_reset_password(verify.code, [target])
 
             return (True, verify)
         except Exception as e:

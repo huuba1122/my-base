@@ -75,3 +75,34 @@
   margin: 16px;
   background: rgba(255, 255, 255, 0.3);
 }
+
+.main-layout {
+  min-height: 100vh;
+}
+
+.bg-white {
+  background-color: #fff !important;
+}
+
+.main-contain {
+  padding: 16px;
+  margin: 0;
+  min-height: 280px;
+}
+
+.main-navbar {
+  padding: 0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.avatar-button {
+  background-color: #f56a00;
+  font-size: 24px;
+  line-height: 26px;
+  cursor: pointer;
+}
+
+.dropdown-user-setting {
+  min-width: 100px;
+}

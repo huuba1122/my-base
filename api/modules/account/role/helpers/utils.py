@@ -1,11 +1,10 @@
-from django.db import models
-from django.contrib.auth.models import Permission
+from django.contrib.auth.models import Permission,  Group
 from services.helpers.utils import Utils
-
+from .srs import RoleSr
 
 class RoleUtils:
     @staticmethod
-    def all_permissions() -> dict:
+    def all_permissions():
         permissions = Permission.objects.exclude(
             content_type__model__in=[
                 "logentry",
@@ -29,7 +28,7 @@ class RoleUtils:
         ]
 
     @staticmethod
-    def group_content_type(permissions: list) -> dict:
+    def group_content_type(permissions):
         result: dict = {}
         for pem in permissions:
             short_pem = {
@@ -42,3 +41,8 @@ class RoleUtils:
             else:
                 result[content_type].append(short_pem)
         return result
+
+    @staticmethod
+    def get_list_group():
+        groups = RoleSr(Group.objects.all(), many=True).data
+        return [{"value": group["id"], "label": group["name"]} for group in groups]

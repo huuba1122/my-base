@@ -38,18 +38,15 @@ const responseErrorHandler = async (axiosError) => {
   if (axiosError.response?.status === ERROR_CODES.invalidToken) {
     try {
       refreshing = refreshing || refreshToken(1);
-      console.log('call refresh Token');
       const { token } = await refreshing;
-      console.log('refresh', token);
       StorageService.set('accessToken', token);
       return httpClient(originalConfig);
     } catch (error) {
       console.log('refresh token error', error);
       StorageService.clearToken();
-      // redirectToLogin();
+      redirectToLogin();
       return Promise.reject(error);
     } finally {
-      console.log('cleanup');
       refreshing = null;
     }
   }
@@ -62,7 +59,7 @@ const responseErrorHandler = async (axiosError) => {
  */
 export const refreshToken = async () => {
   return new Promise((resolve, reject) => {
-    const token = StorageService.getToken();
+    const token = StorageService.getRefreshToken();
     const refreshUrl = `${BASE_API_URL}account/auth/refresh-token/`;
     const request = () => {
       axios

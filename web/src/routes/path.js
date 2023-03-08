@@ -27,6 +27,16 @@ const PRIVATE_PATHS = {
   },
   group: {
     root: path(ROOT_ADMIN, 'group')
+  },
+  post: {
+    root: path(ROOT_ADMIN, 'post'),
+    create: path(ROOT_ADMIN, 'post/new'),
+    edit: path(ROOT_ADMIN, 'post/:id/edit'),
+    detail: path(ROOT_ADMIN, 'post/:id')
+  },
+  category: {
+    root: path(ROOT_ADMIN, 'category'),
+    detail: path(ROOT_ADMIN, 'category/:id')
   }
 };
 

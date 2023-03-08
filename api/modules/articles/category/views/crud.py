@@ -26,8 +26,14 @@ class CategoryViewSet(GenericViewSet):
         queryset = self.filter_queryset(queryset)
         queryset = self.paginate_queryset(queryset)
         serializer = CategorySrs(queryset, many=True)
+        result = {
+            "items": serializer.data,
+            "extra": {
+                "options": CategoryUtils.get_category_options()
+            }
+        }
 
-        return self.get_paginated_response(serializer.data)
+        return self.get_paginated_response(result)
     
 
     def retrieve(self, request, pk=None):

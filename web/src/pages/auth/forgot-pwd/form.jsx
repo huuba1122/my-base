@@ -1,11 +1,16 @@
 import React from 'react';
 import { t } from 'ttag';
 
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, notification } from 'antd';
 import { MailOutlined } from '@ant-design/icons';
+
+// apps
+import { resetPwd } from '@services/api/auth';
 
 function ForgotForm({ onChange }) {
   const [form] = Form.useForm();
+
+  const [loading, setLoading] = React.useState(false);
 
   const initialValues = {
     username: 'mrblack@email.com'
@@ -20,9 +25,14 @@ function ForgotForm({ onChange }) {
   };
 
   const handleSubmit = (values) => {
-    // cal api submit here
-    console.log('submit form forgot: ', values);
-    onChange(values);
+    setLoading(true);
+    resetPwd(values)
+      .then((res) => onChange(res))
+      .catch(() => {
+        console.error(error);
+        notification.error({ message: t`Email invalid!` });
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -31,7 +41,7 @@ function ForgotForm({ onChange }) {
         <Input size="large" autoFocus prefix={<MailOutlined />} />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit" style={{ width: '100%' }} size="large">
+        <Button loading={loading} type="primary" htmlType="submit" style={{ width: '100%' }} size="large">
           {t`Send`}
         </Button>
       </Form.Item>

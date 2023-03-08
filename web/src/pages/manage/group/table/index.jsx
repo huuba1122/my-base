@@ -1,23 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { t } from 'ttag';
-import { useSetRecoilState } from 'recoil';
-import { Row, Col, Table, Tooltip, Space } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
-// request
-import axios from '@services/api/axios';
+// ant
+import { Table, Space, notification } from 'antd';
+
+// apps
+import { fetchGroups, deleteGroup } from '@src/services/api/group';
+
+import { AddNewBtn, EditBtn, RemoveBtn } from '@src/components/comon/buttons';
+import Dialog from '../dialog';
 
 // ----------------------------------------------------------------
 export default function GroupTable() {
+  const dialogRef = React.useRef(null);
   const [list, setList] = useState([]);
+  const [pems, setPems] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const getListGroups = (params) => {
-    console.log(' fetch user');
     setLoading(true);
-    axios
-      .get('/account/role/', params)
-      .then((res) => setList(res.items))
+    fetchGroups(params)
+      .then((res) => {
+        setList(res.items);
+        setPems(res.extra.permissions);
+      })
       .finally(() => setLoading(false));
   };
 
@@ -26,12 +32,27 @@ export default function GroupTable() {
   }, []);
 
   const onDelete = (id) => {
-    getListGroups();
-    console.log('delete', id);
+    deleteGroup(id)
+      .then(() => {
+        setList([...list.filter((item) => item.id !== id)]);
+        notification.success({ message: 'Deleted role successfully!' });
+      })
+      .catch((err) => {
+        console.error(err);
+        notification.error({ message: 'Deleted role failed!' });
+      });
   };
 
-  const onUpdate = (id) => {
-    console.log('update', id);
+  const toggleDialog = (id = 0) => {
+    dialogRef.current.toggleModal(id);
+  };
+
+  const onChange = (id, data) => {
+    if (!id) {
+      setList([{ ...data }, ...list]);
+    } else {
+      setList([...list.map((item) => (item.id === id ? data : item))]);
+    }
   };
 
   const columns = [
@@ -52,12 +73,8 @@ export default function GroupTable() {
       width: 90,
       render: (_text, record) => (
         <Space size="middle">
-          <Tooltip title={t`Edit`} trigger="hover">
-            <EditOutlined onClick={() => onUpdate(record.id)} />
-          </Tooltip>
-          <Tooltip title={t`Delete`} trigger="hover">
-            <DeleteOutlined onClick={() => onDelete(record.id)} />
-          </Tooltip>
+          <EditBtn onClick={() => toggleDialog(record.id)} />
+          <RemoveBtn onConfirm={() => onDelete(record.id)} />
         </Space>
       )
     }
@@ -65,7 +82,12 @@ export default function GroupTable() {
 
   return (
     <div>
+      <div className="table-action">
+        <AddNewBtn onClick={() => toggleDialog(0)} />
+      </div>
+
       <Table rowKey="id" columns={columns} dataSource={list} loading={loading} />
+      <Dialog pems={pems} onChange={onChange} ref={dialogRef} />
     </div>
   );
 }

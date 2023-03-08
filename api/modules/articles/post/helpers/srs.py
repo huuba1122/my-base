@@ -1,3 +1,4 @@
+import json
 from rest_framework.serializers import ModelSerializer
 from django.http import QueryDict
 
@@ -18,7 +19,7 @@ class PostSrs(ModelSerializer):
     def to_representation(self, obj):
         rep = super().to_representation(obj)
         rep["attachments"] = AttachmentSrs(
-            obj.attachments.all(), many=True
+            obj.attachments.filter(in_content=False), many=True
         ).data
         return rep
 
@@ -27,6 +28,10 @@ class PostSrs(ModelSerializer):
         data = data.dict() if isinstance(data, QueryDict) else data
         title = data.get('title')
         slug = data.get('slug')
+        categories = data.get('categories')
+        if(categories):
+            categories = json.loads(categories)
+            data['categories'] = categories
         if not slug:
             slug = self.generate_slug(title)
             data['slug'] = slug

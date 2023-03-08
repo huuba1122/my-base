@@ -15,8 +15,13 @@ PK_ENDPOINT = PostViewSet.as_view({
     "delete": "delete",
 })
 
+EXTRA_ENDPOINT = PostViewSet.as_view({
+    "delete": "remove_banner",
+})
+
 
 urlpatterns = [
    path("", BASE_ENDPOINT),
-   path("<int:pk>/", PK_ENDPOINT)
+   path("<int:pk>/", PK_ENDPOINT),
+   path("<int:pk>/banner/", EXTRA_ENDPOINT)
 ]

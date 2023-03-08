@@ -42,7 +42,7 @@ class RoleViewSet(GenericViewSet):
     @action(methods=["post"], detail=True)
     def add(self, request):
         serializer = RoleSr(data=request.data)
-        serializer.is_valid(raise_exceptions=True)
+        serializer.is_valid(raise_exception=True)
         serializer.save()
 
         return Response(serializer.data)
@@ -52,7 +52,7 @@ class RoleViewSet(GenericViewSet):
     def change(self, request, pk=None):
         role  = get_object_or_404(Role, pk=pk)
         serializer = RoleSr(role, data=request.data, partial=True)
-        serializer.is_valid(raise_exceptions=True)
+        serializer.is_valid(raise_exception=True)
         serializer.save()
 
         return Response(serializer.data)

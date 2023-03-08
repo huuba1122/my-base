@@ -13,8 +13,7 @@
           ["@components", "./src/components"],
           ["@pages", "./src/pages"],
           ["@services/*", "./src/services"],
-          ["@hooks", "./src/hooks"],
-          ["@contexts", "./src/contexts"],
+          ["@shared", "./src/shared"],
           ["@recoil", "./src/recoil"],
           ["@routes", "./src/routes"]
         ],
@@ -51,6 +50,7 @@
     "no-throw-literal": 0,
     "arrow-body-style": 0,
     "react/display-name": 0,
+    "no-underscore-dangle": 0,
     "no-restricted-syntax": 0,
     "no-use-before-define": 0,
     "react/button-has-type": 0,

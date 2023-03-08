@@ -14,6 +14,7 @@ const { Title } = Typography;
 // ------------------------------------------------------------
 function ResetPwd() {
   const navigate = useNavigate();
+
   const handleResetPwd = (data) => {
     navigate(AUTH_PATHS.login);
     console.log('ResetPwd data: ', data);
@@ -27,7 +28,8 @@ function ResetPwd() {
             <Title level={3} style={{ textAlign: 'center', padding: 0, marginBottom: 0 }}>
               {t`Input your new password`}?
             </Title>
-          }>
+          }
+        >
           <ResetPwdForm onChange={handleResetPwd} />
         </Card>
       </Col>
