@@ -10,12 +10,12 @@ const initialCountDown = {
 
 /**
  * custom hooks useCountDown
- * @param {number} countDownTime
+ * @param {number} countDownTime // seconds
  * @return {object} includes data, func stop and func restart count down
  */
 export default function useCountDown(countDownTime = 0, step = 1000) {
   const [value, setValue] = React.useState(initialCountDown);
-  const [startDate, setStartDate] = React.useState(Date.now() + countDownTime);
+  const [startDate, setStartDate] = React.useState(Date.now() + countDownTime * 1000);
   const [isStarted, setIsStarted] = React.useState(false);
   const timerRef = React.useRef(null);
 
@@ -24,6 +24,7 @@ export default function useCountDown(countDownTime = 0, step = 1000) {
    * @param {number} startTime
    */
   const setCountDown = (startTime) => {
+    setIsStarted(true);
     const endTime = Date.now();
 
     const distanceToNow = startTime - endTime;
@@ -54,7 +55,6 @@ export default function useCountDown(countDownTime = 0, step = 1000) {
    */
   const onStart = (startTime, stepInterval) => {
     timerRef.current = setInterval(() => setCountDown(startTime), stepInterval);
-    setIsStarted(true);
   };
 
   const onStop = () => {
@@ -65,7 +65,7 @@ export default function useCountDown(countDownTime = 0, step = 1000) {
   const onRestart = () => {
     onStop();
     setValue(initialCountDown);
-    setStartDate(Date.now() + countDownTime);
+    setStartDate(Date.now() + countDownTime * 1000);
   };
 
   React.useEffect(() => {

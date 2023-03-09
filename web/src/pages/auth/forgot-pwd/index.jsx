@@ -6,28 +6,33 @@ import { useSetRecoilState } from 'recoil';
 // antd
 import { Row, Col, Card, Typography } from 'antd';
 
-import { resetPwdSt } from '@src/recoil/auth/reset-pwd';
+// apps
+import { resetPwdSt, expiredOTPSt } from '@src/recoil/auth/reset-pwd';
+
 import { AUTH_PATHS } from '@src/routes/path';
 import ForgotPwdForm from './form';
-import OTPDialog from '../otp-dialog';
+import { EXPIRED_OTP_TIME } from './consts';
+// import OTPDialog from '../otp-dialog';
 
 const { Title } = Typography;
 
 // ------------------------------------------------------------
 function ForgotPwd() {
   const navigate = useNavigate();
-  const otpRef = React.useRef(null);
+  // const otpRef = React.useRef(null);
   const setResetPwdState = useSetRecoilState(resetPwdSt);
+  const setExpiredOTPState = useSetRecoilState(expiredOTPSt);
 
   const handleForgot = (data) => {
     setResetPwdState(data);
-    if (otpRef.current) otpRef.current.toggleModal();
+    setExpiredOTPState(Date.now() + EXPIRED_OTP_TIME * 1000);
+    navigate(AUTH_PATHS.resetPwd);
+    // if (otpRef.current) otpRef.current.toggleModal();
   };
 
-  const handleConfimOtp = (data) => {
-    console.log('confirm otp data: ', data);
-    navigate(AUTH_PATHS.login);
-  };
+  // const handleConfimOtp = (data) => {
+  //   console.log('confirm otp');
+  // };
 
   return (
     <>
@@ -44,7 +49,7 @@ function ForgotPwd() {
           </Card>
         </Col>
       </Row>
-      <OTPDialog onChange={handleConfimOtp} ref={otpRef} />
+      {/* <OTPDialog onChange={handleConfimOtp} ref={otpRef} validTime={countDownSeconds} /> */}
     </>
   );
 }

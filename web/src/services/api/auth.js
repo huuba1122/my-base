@@ -26,12 +26,12 @@ export const userLogout = () => {
  * @returns {Promise}
  */
 export const resetPwd = (params) => {
+  return httpClient.post(urls.resetPwd, params);
   // return new Promise((resolve, reject) => {
   //   setTimeout(() => {
   //     resolve({ verify_id: 'f3383333-c507-4b99-9ddf-0f67568c27de' });
   //   }, 1000);
   // });
-  return httpClient.post(urls.resetPwd, params);
 };
 
 /**

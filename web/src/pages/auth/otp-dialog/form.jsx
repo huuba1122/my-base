@@ -11,7 +11,6 @@ const initialValues = { otp_code: '', password: '', confirm_password: '' };
 
 function OTPDialogForm({ onChange, onLoading }) {
   const forgotPwdState = useRecoilValue(resetPwdSt);
-  console.log({ forgotPwdState });
   const [form] = Form.useForm();
 
   const formAttrs = {
@@ -46,7 +45,6 @@ function OTPDialogForm({ onChange, onLoading }) {
 
   const handleSubmit = (values) => {
     const payload = { ...forgotPwdState, ...values };
-    console.log('submit otp code: ', payload);
     onLoading(true);
     resetPwd(payload)
       .then(onChange)
@@ -59,7 +57,6 @@ function OTPDialogForm({ onChange, onLoading }) {
 
   return (
     <Form name={formName} form={form} initialValues={{ ...initialValues }} onFinish={handleSubmit} layout="vertical">
-      <p>{t`The OTP code has been sent to`}</p>
       <Form.Item {...formAttrs.otp_code}>
         <Input autoFocus />
       </Form.Item>

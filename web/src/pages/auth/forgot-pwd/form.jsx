@@ -27,8 +27,8 @@ function ForgotForm({ onChange }) {
   const handleSubmit = (values) => {
     setLoading(true);
     resetPwd(values)
-      .then((res) => onChange(res))
-      .catch(() => {
+      .then((res) => onChange({ ...res, username: values.username }))
+      .catch((error) => {
         console.error(error);
         notification.error({ message: t`Email invalid!` });
       })
@@ -38,7 +38,7 @@ function ForgotForm({ onChange }) {
   return (
     <Form form={form} initialValues={initialValues} onFinish={handleSubmit}>
       <Form.Item {...formAttrs.username}>
-        <Input size="large" autoFocus prefix={<MailOutlined />} />
+        <Input size="large" autoFocus prefix={<MailOutlined />} type="email" />
       </Form.Item>
       <Form.Item>
         <Button loading={loading} type="primary" htmlType="submit" style={{ width: '100%' }} size="large">

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useNavigate, Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { t } from 'ttag';
@@ -10,7 +11,7 @@ import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 // app
 import { profileSt } from '@recoil/user/profile';
 import Utils from '@src/services/helpers/utils';
-import { PRIVATE_PATHS, AUTH_PATHS } from '@routes/path';
+import { PRIVATE_PATHS } from '@routes/path';
 import StorageService from '@services/helpers/local-storage';
 import { userLogout } from '@src/services/api/auth';
 import { useLayoutState } from './context';
@@ -31,6 +32,12 @@ const UserAvatar = React.forwardRef(({ label, onClick, color = '#f56a00' }, ref)
     </Avatar>
   );
 });
+
+UserAvatar.propTypes = {
+  label: PropTypes.string,
+  onClick: PropTypes.func,
+  color: PropTypes.string
+};
 
 const DropDownUserSettings = ({ username }) => {
   const navigate = useNavigate();
@@ -63,6 +70,10 @@ const DropDownUserSettings = ({ username }) => {
       <UserAvatar label={username} ref={nodeRef} color={color} />
     </Dropdown>
   );
+};
+
+DropDownUserSettings.propTypes = {
+  username: PropTypes.string
 };
 
 // -------------------------------

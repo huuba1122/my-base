@@ -53,6 +53,22 @@ class Utils {
     if (!Utils.isPlainObject(obj)) return obj;
     return Object.fromEntries(Object.entries(obj).filter(([key, _]) => !keys.includes(key)));
   }
+
+  /**
+   *
+   * @param {string} email
+   * @return {string}
+   */
+  static maskEmail(email) {
+    if (!email) return '';
+    const strArr = email.split('@');
+    const prefix = strArr[0];
+    const mask = prefix
+      .split('')
+      .map((c, index) => (index === 0 || index === prefix.length - 1 ? c : '*'))
+      .join('');
+    return `${mask}@${strArr[1]}`;
+  }
 }
 
 export default Utils;

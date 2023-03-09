@@ -4,7 +4,12 @@ export const resetPwdSt = atom({
   key: 'resetPwdSt',
   default: {
     username: '',
-    verifyId: '',
-    otpCode: ''
+    verify_id: '',
+    otp_code: ''
   }
+});
+
+export const expiredOTPSt = atom({
+  key: 'expiredOTPSt',
+  default: 0
 });
