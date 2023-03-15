@@ -8,6 +8,10 @@ import { EditOutlined, DeleteOutlined, PlusOutlined, ExclamationCircleFilled } f
 
 const { confirm } = Modal;
 
+// ----------------------------------------------------------------
+AddNewBtn.propTypes = {
+  onClick: PropTypes.func
+};
 export function AddNewBtn({ onClick }) {
   return (
     <Button type="primary" icon={<PlusOutlined />} onClick={onClick}>
@@ -16,6 +20,10 @@ export function AddNewBtn({ onClick }) {
   );
 }
 
+// ----------------------------------------------------------------
+EditBtn.propTypes = {
+  onClick: PropTypes.func
+};
 export function EditBtn({ onClick }) {
   return (
     <Tooltip title={t`Update`}>
@@ -24,6 +32,11 @@ export function EditBtn({ onClick }) {
   );
 }
 
+// ----------------------------------------------------------------
+RemoveBtn.propTypes = {
+  onConfirm: PropTypes.func,
+  confirmTitle: PropTypes.string
+};
 export function RemoveBtn({ onConfirm, confirmTitle = t`Do you Want to delete this item?` }) {
   const showConfirm = () => {
     confirm({

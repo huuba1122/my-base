@@ -3,15 +3,9 @@ import PropTypes from 'prop-types';
 import SunEditorPlugin from 'suneditor-react';
 import 'suneditor/dist/css/suneditor.min.css'; // Import Sun Editor's CSS File
 
-const uploadAttachment = (formData) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve({
-        url: 'https://vinmec-staging.s3.amazonaws.com/product/a4052da3-21ef-49b5-9d20-8acdd4ad4fdf.jpg'
-      });
-    }, 5000);
-  });
-};
+import httpClient from '@services/api/axios';
+
+const uploadAttachment = (to, formData) => httpClient.post(to, formData);
 // ----------------------------------------------------------------
 function SunEditor({ error, value, onChange, placeholder, uploadTo, uid, ...other }) {
   const onImageUploadBefore = (files, info, uploadHandler) => {
@@ -22,13 +16,13 @@ function SunEditor({ error, value, onChange, placeholder, uploadTo, uid, ...othe
       formData.append('post_uid', uid);
     }
 
-    uploadAttachment(formData).then((res) => {
+    uploadAttachment(to, formData).then((res) => {
       // result
       const response = {
         // The response must have a "result" array.
         result: [
           {
-            url: res.url,
+            url: res.data?.url,
             name: files[0].name,
             size: files[0].size
           }

@@ -12,7 +12,7 @@ const urls = {
  * Retrieve the user profile from server
  * @returns {Promise}
  */
-export const fetchUserProfile = () => {
+export const getProfile = () => {
   return httpClient.get(urls.profile);
 };
 

@@ -1,22 +1,33 @@
 import React from 'react';
 import { t } from 'ttag';
+import PropTypes from 'prop-types';
 
 // ant
-import { Form, Input, Button } from 'antd';
+import { Form, Input, notification } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
+
+// apps
+import { changePwd } from '@services/api/auth';
 
 const formName = 'ChangePwdForm';
 const initialValues = {
+  old_password: '',
   password: '',
-  confirmPassword: ''
+  confirm_password: ''
 };
 //----------------------------------------------------------------
-function ChangePwdForm({ onChange }) {
+
+ChangePwdForm.propTypes = {
+  onChange: PropTypes.func,
+  onLoading: PropTypes.func
+};
+
+function ChangePwdForm({ onChange, onLoading }) {
   const [form] = Form.useForm();
 
   const formAttrs = {
     oldPassword: {
-      name: 'password',
+      name: 'old_password',
       rules: [{ required: true, message: 'Please input your old password' }]
     },
     password: {
@@ -24,7 +35,7 @@ function ChangePwdForm({ onChange }) {
       rules: [{ required: true, message: 'Please input your password' }]
     },
     confirmPassword: {
-      name: 'confirmPassword',
+      name: 'confirm_password',
       rules: [
         { required: true, message: 'Please confirm your password' },
         (formInstance) => ({
@@ -40,9 +51,17 @@ function ChangePwdForm({ onChange }) {
   };
 
   const handleSubmit = (values) => {
-    // cal api submit here
-    console.log('submit form forgot: ', values);
-    onChange(values);
+    onLoading(true);
+    changePwd(values)
+      .then((res) => {
+        onChange(res);
+        notification.success({ message: t`Change password successfully!` });
+      })
+      .catch((err) => {
+        console.log('change password error: ', err);
+        notification.error({ message: t`Change password failed` });
+      })
+      .finally(() => onLoading(false));
   };
 
   return (
@@ -55,11 +74,6 @@ function ChangePwdForm({ onChange }) {
       </Form.Item>
       <Form.Item {...formAttrs.confirmPassword}>
         <Input.Password placeholder="Password confirm" size="large" prefix={<LockOutlined />} />
-      </Form.Item>
-      <Form.Item>
-        <Button type="primary" htmlType="submit" style={{ width: '100%', marginTop: 8 }} size="large">
-          {t`Submit`}
-        </Button>
       </Form.Item>
     </Form>
   );

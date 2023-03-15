@@ -6,10 +6,13 @@ import { Table, Space, notification } from 'antd';
 
 // apps
 import { fetchGroups, deleteGroup } from '@src/services/api/group';
+import { USER_ACTIONS } from '@services/constants';
 
-import { AddNewBtn, EditBtn, RemoveBtn } from '@src/components/comon/buttons';
+import HasPermit from '@src/components/comon/HasPermit';
+import { AddNewBtn, EditBtn, RemoveBtn } from '@src/components/comon/table/buttons';
 import Dialog from '../dialog';
 
+const pemGroup = 'group';
 // ----------------------------------------------------------------
 export default function GroupTable() {
   const dialogRef = React.useRef(null);
@@ -73,8 +76,12 @@ export default function GroupTable() {
       width: 90,
       render: (_text, record) => (
         <Space size="middle">
-          <EditBtn onClick={() => toggleDialog(record.id)} />
-          <RemoveBtn onConfirm={() => onDelete(record.id)} />
+          <HasPermit pemGroup={pemGroup} action={USER_ACTIONS.update}>
+            <EditBtn onClick={() => toggleDialog(record.id)} />
+          </HasPermit>
+          <HasPermit pemGroup={pemGroup} action={USER_ACTIONS.delete}>
+            <RemoveBtn onConfirm={() => onDelete(record.id)} />
+          </HasPermit>
         </Space>
       )
     }
@@ -82,9 +89,11 @@ export default function GroupTable() {
 
   return (
     <div>
-      <div className="table-action">
-        <AddNewBtn onClick={() => toggleDialog(0)} />
-      </div>
+      <HasPermit pemGroup={pemGroup} action={USER_ACTIONS.add}>
+        <div className="table-action">
+          <AddNewBtn onClick={() => toggleDialog(0)} />
+        </div>
+      </HasPermit>
 
       <Table rowKey="id" columns={columns} dataSource={list} loading={loading} />
       <Dialog pems={pems} onChange={onChange} ref={dialogRef} />

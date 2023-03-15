@@ -10,7 +10,7 @@ import Loading from '@components/Loading';
 import Form from './form';
 
 // ----------------------------------------------------------------
-const OTPDialog = React.forwardRef(({ pems, onChange }, ref) => {
+const GroupDialog = React.forwardRef(({ pems, onChange }, ref) => {
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [data, setData] = React.useState(null);
@@ -58,5 +58,5 @@ const OTPDialog = React.forwardRef(({ pems, onChange }, ref) => {
   );
 });
 
-OTPDialog.displayName = 'OTPDialog';
-export default OTPDialog;
+GroupDialog.displayName = 'GroupDialog';
+export default GroupDialog;

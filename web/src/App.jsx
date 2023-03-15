@@ -11,9 +11,10 @@ import { profileSt } from '@recoil/user/profile';
 import Utils from '@src/services/helpers/utils';
 import LocaleService from '@src/services/helpers/i18n';
 import StorageService from '@src/services/helpers/local-storage';
-import { fetchUserProfile } from '@services/api/auth';
+import { getProfile } from '@services/api/auth';
 
 //
+import Loading from '@components/Loading';
 import Index from './routes';
 
 import './App.css';
@@ -27,7 +28,7 @@ function App() {
   const fetchProfile = () => {
     const token = StorageService.getToken();
     if (!token || !Utils.isBlankObj(profile)) return;
-    fetchUserProfile().then(setProfile).catch(console.log);
+    getProfile().then(setProfile).catch(console.log);
   };
 
   useLocale(locale);
@@ -39,10 +40,8 @@ function App() {
     });
   }, []);
 
-  console.log('render app');
-
   if (!dataLoaded) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (

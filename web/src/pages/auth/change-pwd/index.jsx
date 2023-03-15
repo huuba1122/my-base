@@ -1,39 +1,47 @@
 import React from 'react';
 import { t } from 'ttag';
-import { useNavigate } from 'react-router-dom';
 
 // antd
-import { Row, Col, Card, Typography } from 'antd';
+import { Modal } from 'antd';
 
 // app
-import { AUTH_PATHS } from '@src/routes/path';
 import ChangePwdForm from './form';
 
-const { Title } = Typography;
+// ----------------------------------------------------------------
+const ChangePwdDialog = React.forwardRef(({ onChange }, ref) => {
+  const [open, setOpen] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
-// ------------------------------------------------------------
-function ChangePwd() {
-  const navigate = useNavigate();
-  const handleChangePwd = (data) => {
-    // navigate(AUTH_PATHS.login);
-    console.log('Change pwd data: ', data);
+  React.useImperativeHandle(ref, () => ({
+    toggleModal: () => {
+      setOpen((pre) => !pre);
+    }
+  }));
+
+  const onFinish = (data) => {
+    setOpen(false);
+    onChange(data);
+  };
+
+  const handleCancel = () => {
+    if (loading) return;
+    setOpen(false);
   };
 
   return (
-    <Row align="middle" style={{ height: '70vh', padding: 8 }}>
-      <Col xs={{ span: 24 }} md={{ span: 12, offset: 6 }} lg={{ span: 8, offset: 8 }}>
-        <Card
-          title={
-            <Title level={3} style={{ textAlign: 'center', padding: 0, marginBottom: 0 }}>
-              {t`Change your password`}?
-            </Title>
-          }>
-          <ChangePwdForm onChange={handleChangePwd} />
-        </Card>
-      </Col>
-    </Row>
+    <Modal
+      title={t`Change your password`}
+      open={open}
+      // onOk={handleOk}
+      onCancel={handleCancel}
+      width="80%"
+      confirmLoading={loading}
+      okButtonProps={{ form: ChangePwdForm.formName, key: 'submit', htmlType: 'submit' }}
+    >
+      <ChangePwdForm onChange={onFinish} onLoading={setLoading} />
+    </Modal>
   );
-}
+});
 
-ChangePwd.displayName = 'ChangePwd';
-export default ChangePwd;
+ChangePwdDialog.displayName = 'ChangePwdDialog';
+export default ChangePwdDialog;

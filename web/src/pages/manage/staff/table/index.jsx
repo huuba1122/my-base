@@ -8,10 +8,14 @@ import { Table, Space, notification } from 'antd';
 // apps
 import { fetchStaffs, deleteStaff } from '@src/services/api/staff';
 import { staffSt } from '@src/recoil/user';
+import { USER_ACTIONS } from '@services/constants';
 
-import { AddNewBtn, EditBtn, RemoveBtn } from '@src/components/comon/buttons';
+import HasPermit from '@components/comon/HasPermit';
 import Pagination from '@components/comon/table/pagination';
+import { AddNewBtn, EditBtn, RemoveBtn } from '@src/components/comon/table/buttons';
 import Dialog from '../dialog';
+
+const pemGroup = 'staff';
 // ----------------------------------------------------------------
 export default function StaffTable() {
   const dialogRef = React.useRef(null);
@@ -79,8 +83,12 @@ export default function StaffTable() {
       width: 90,
       render: (_text, record) => (
         <Space size="middle">
-          <EditBtn onClick={() => toggleDialog(record.id)} />
-          <RemoveBtn onConfirm={() => onDelete(record.id)} />
+          <HasPermit pemGroup={pemGroup} action={USER_ACTIONS.update}>
+            <EditBtn onClick={() => toggleDialog(record.id)} />
+          </HasPermit>
+          <HasPermit pemGroup={pemGroup} action={USER_ACTIONS.delete}>
+            <RemoveBtn onConfirm={() => onDelete(record.id)} />
+          </HasPermit>
         </Space>
       )
     }
@@ -88,9 +96,11 @@ export default function StaffTable() {
 
   return (
     <div>
-      <div className="table-action">
-        <AddNewBtn onClick={() => toggleDialog(0)} />
-      </div>
+      <HasPermit pemGroup={pemGroup} action={USER_ACTIONS.add}>
+        <div className="table-action">
+          <AddNewBtn onClick={() => toggleDialog(0)} />
+        </div>
+      </HasPermit>
 
       <Table rowKey="id" columns={columns} dataSource={items} loading={loading} pagination={false} />
       <Pagination page={page} total={count} pageSize={pageSize} onChange={handleChangePage} />

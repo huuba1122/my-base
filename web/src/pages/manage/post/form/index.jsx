@@ -5,7 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { retrievePost } from '@src/services/api/post';
 import { PRIVATE_PATHS } from '@routes/path';
 
-import LocalSpiner from '@components/comon/local-spiner';
+import LocalSpiner from '@src/components/comon/LocalSpiner';
 import Form from './form';
 
 function PostFormPage() {

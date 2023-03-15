@@ -7,7 +7,7 @@ import { Button, Row, Col, Checkbox, Card, Typography } from 'antd';
 
 // app
 import { PRIVATE_PATHS } from '@routes/path';
-import { fetchUserProfile } from '@services/api/auth';
+import { getProfile } from '@services/api/auth';
 import { profileSt } from '@recoil/user/profile';
 //
 import FormLogin from './form';
@@ -21,7 +21,7 @@ function Login() {
   const setUserProfileSt = useSetRecoilState(profileSt);
 
   const handleLogin = (data) => {
-    fetchUserProfile().then((user) => {
+    getProfile().then((user) => {
       const url = PRIVATE_PATHS.root;
       navigate(url);
       setUserProfileSt(user);

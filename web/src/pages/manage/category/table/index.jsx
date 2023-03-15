@@ -8,9 +8,13 @@ import { Table, Space, notification } from 'antd';
 // apps
 import { fetchCategories, deleteCategory } from '@src/services/api/category';
 import { categoryOptionsSt } from '@recoil/category';
+import { USER_ACTIONS } from '@src/services/constants';
 
-import { AddNewBtn, EditBtn, RemoveBtn } from '@src/components/comon/buttons';
+import HasPermit from '@components/comon/HasPermit';
+import { AddNewBtn, EditBtn, RemoveBtn } from '@src/components/comon/table/buttons';
 import Dialog from '../dialog';
+
+const pemGroup = 'category';
 
 // ----------------------------------------------------------------
 export default function CategoryTable() {
@@ -73,8 +77,12 @@ export default function CategoryTable() {
       width: 90,
       render: (_text, record) => (
         <Space size="middle">
-          <EditBtn onClick={() => toggleDialog(record.id)} />
-          <RemoveBtn onConfirm={() => onDelete(record.id)} />
+          <HasPermit pemGroup={pemGroup} action={USER_ACTIONS.update}>
+            <EditBtn onClick={() => toggleDialog(record.id)} />
+          </HasPermit>
+          <HasPermit pemGroup={pemGroup} action={USER_ACTIONS.delete}>
+            <RemoveBtn onConfirm={() => onDelete(record.id)} />
+          </HasPermit>
         </Space>
       )
     }
@@ -82,9 +90,11 @@ export default function CategoryTable() {
 
   return (
     <div>
-      <div className="table-action">
-        <AddNewBtn onClick={() => toggleDialog(0)} />
-      </div>
+      <HasPermit pemGroup={pemGroup} action={USER_ACTIONS.add}>
+        <div className="table-action">
+          <AddNewBtn onClick={() => toggleDialog(0)} />
+        </div>
+      </HasPermit>
 
       <Table rowKey="id" columns={columns} dataSource={list} loading={loading} />
       <Dialog onChange={onChange} ref={dialogRef} />
