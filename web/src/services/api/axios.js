@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { t } from 'ttag';
 
 import { BASE_API_URL, LANGUAGE_DEFAULT } from '@src/configs';
 
@@ -19,6 +20,8 @@ httpClient.interceptors.response.use(
   (response) => response.data,
   (error) => responseErrorHandler(error)
 );
+
+export default httpClient;
 
 const requestHandler = (request) => {
   request.withCredentials = false;
@@ -45,12 +48,12 @@ const responseErrorHandler = async (axiosError) => {
       console.log('refresh token error', error);
       StorageService.clearToken();
       redirectToLogin();
-      return Promise.reject(error);
+      return Promise.reject(parseError(error));
     } finally {
       refreshing = null;
     }
   }
-  return Promise.reject(axiosError);
+  return Promise.reject(parseError(axiosError));
 };
 
 /**
@@ -75,4 +78,14 @@ export const refreshToken = async () => {
   });
 };
 
-export default httpClient;
+/**
+ * @param {Object} axiosError
+ * @returns {string}
+ */
+const parseError = (axiosError) => {
+  const defaultErr = {
+    detail: t`Something was wrong!`
+  };
+  const { data } = axiosError?.response ?? {};
+  return data || defaultErr;
+};

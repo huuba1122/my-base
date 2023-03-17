@@ -49,6 +49,8 @@ const OTPDialog = React.forwardRef(({ onChange, validTime }, ref) => {
     setOpen(false);
   };
 
+  const maskUsername = Utils.maskEmail(username);
+
   return (
     <Modal
       title={t`Reset your password`}
@@ -58,7 +60,7 @@ const OTPDialog = React.forwardRef(({ onChange, validTime }, ref) => {
       confirmLoading={loading}
       okButtonProps={{ form: Form.formName, key: 'submit', htmlType: 'submit' }}
     >
-      {username ? <p>{t`The OTP code has been sent to ${Utils.maskEmail(username)}`}</p> : null}
+      {username ? <p>{t`The OTP code has been sent to ${maskUsername}`}</p> : null}
       <CountDownBox countDown={validTime} />
       <Form onChange={onChange} onLoading={setLoading} />
     </Modal>

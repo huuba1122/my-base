@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { t } from 'ttag';
+import PropTypes from 'prop-types';
 
 // antd
 import { Modal } from 'antd';
@@ -57,6 +58,11 @@ const GroupDialog = React.forwardRef(({ pems, onChange }, ref) => {
     </Modal>
   );
 });
+
+GroupDialog.propTypes = {
+  onChange: PropTypes.func,
+  pems: PropTypes.array
+};
 
 GroupDialog.displayName = 'GroupDialog';
 export default GroupDialog;

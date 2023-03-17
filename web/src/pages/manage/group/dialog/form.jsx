@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { t } from 'ttag';
+import PropTypes from 'prop-types';
+
+// antd
 import { Form, Input, notification } from 'antd';
 
 // apps
@@ -12,6 +15,12 @@ const formName = 'GroupForm';
 
 const emptyFormData = { name: '', permissions: [] };
 
+// ----------------------------------------------------------------
+GroupForm.propTypes = {
+  onChange: PropTypes.func,
+  data: PropTypes.object,
+  pems: PropTypes.array
+};
 function GroupForm({ onChange, data, pems }) {
   const [form] = Form.useForm();
   const initialValues = Utils.isBlankObj(data) ? emptyFormData : data;
@@ -32,15 +41,16 @@ function GroupForm({ onChange, data, pems }) {
 
   const handleSubmit = (values) => {
     const action = id ? updateGroup(id, values) : createGroup(values);
+    const actionMsg = id ? t`Update` : t`Create`;
     action
       .then((res) => {
-        notification.success({ message: t`${id ? 'Update' : 'Create'} role successfully!` });
+        notification.success({ message: t`${actionMsg} role successfully!` });
         form.resetFields();
         onChange(id, res);
       })
       .catch((err) => {
         console.error(err);
-        notification.error({ message: t`${id ? 'Update' : 'Create'} role failed!` });
+        notification.error({ message: t`${actionMsg} role failed!` });
       });
   };
 

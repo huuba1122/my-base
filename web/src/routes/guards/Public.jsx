@@ -1,8 +1,9 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 
-function User() {
-  return <div>User Page</div>;
+function PublicRouter() {
+  return <Outlet />;
 }
 
-User.displayName = 'User';
-export default User;
+PublicRouter.displayName = 'PublicRouter';
+export default PublicRouter;

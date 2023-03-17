@@ -23,8 +23,8 @@ class ProfileView(APIView):
     def put(self, request):
         user = self.get_user()
         staff = user.staff
-        data = {}
-        if phone_number := request.data.get("phone_number", None):
+        data = request.data
+        if phone_number := data.get("phone_number", None):
             data = dict(phone_number=phone_number)
         staff = StaffUtils.update_staff(staff, data)
         sr = StaffSr(staff)

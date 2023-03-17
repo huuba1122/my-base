@@ -2,14 +2,20 @@ import React from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { t } from 'ttag';
 
+// antd
+import { Button } from 'antd';
+import { GlobalOutlined } from '@ant-design/icons';
+
 // recoil
-// import { filteredPostListSelector, postListFilterState } from '@recoil/post';
+import { localeState } from '@src/recoil/locale';
 
 // hooks
-import useDebounce from '@src/shared/common/useDebounce';
+import useDebounce from '@src/shared/hooks/useDebounce';
 
 // ----------------------------------------------------------------
 function HomePage() {
+  const [locale, setLocale] = useRecoilState(localeState);
+
   const [filter, setFilter] = React.useState('');
   const filteredPostList = [];
 
@@ -27,6 +33,13 @@ function HomePage() {
   return (
     <div className="container">
       {t`Home Page`}
+
+      <div>
+        {t`Languages`}:
+        <GlobalOutlined />
+        <Button onClick={() => setLocale('vi')}>VI</Button>
+        <Button onClick={() => setLocale('en')}>EN</Button>
+      </div>
       <div className="mt-2 p-2">
         <label htmlFor="search-post">
           {t`Search`}:

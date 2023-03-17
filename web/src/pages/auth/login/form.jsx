@@ -1,11 +1,20 @@
 import React from 'react';
-import { Form, Input, Button, Typography } from 'antd';
+import { t } from 'ttag';
+import PropTypes from 'prop-types';
+// antd
+import { Form, Input, Button, notification } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 // request
-import axios from '@src/services/api/axios';
+import { userLogIn } from '@services/api/auth';
 import StorageService from '@src/services/helpers/local-storage';
+
 // --------------------------------------------------
+LoginForm.propTypes = {
+  onChange: PropTypes.func,
+  children: PropTypes.node
+};
+
 function LoginForm({ onChange, children }) {
   const [form] = Form.useForm();
 
@@ -17,22 +26,26 @@ function LoginForm({ onChange, children }) {
   const formAttrs = {
     username: {
       name: 'username',
-      rules: [{ required: true, message: 'Please input your Username' }],
-      placehoder: 'Username'
+      rules: [{ required: true, message: t`Input your username` }],
+      placehoder: t`Username`
     },
     password: {
       name: 'password',
-      rules: [{ required: true, message: 'Please input your Password' }],
-      placehoder: 'Password',
+      rules: [{ required: true, message: t`Input your password` }],
+      placehoder: t`Password`,
       prefix: <LockOutlined />
     }
   };
 
   const handleSubmit = (values) => {
-    axios.post('account/auth/login/', values).then((res) => {
-      StorageService.setTokens(res);
-      onChange(res);
-    });
+    userLogIn(values)
+      .then((res) => {
+        StorageService.setTokens(res);
+        onChange(res);
+      })
+      .catch((e) => {
+        notification.error({ message: e.detail });
+      });
   };
 
   return (
@@ -46,7 +59,7 @@ function LoginForm({ onChange, children }) {
       <Form.Item>{children}</Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit" style={{ width: '100%' }} size="large">
-          Login
+          {t`Login`}
         </Button>
       </Form.Item>
     </Form>

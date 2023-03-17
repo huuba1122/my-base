@@ -53,15 +53,17 @@ function CategoryForm({ onChange, data }) {
 
   const handleSubmit = (values) => {
     const action = id ? updateCategory(id, values) : createCategory(values);
+    const actionMsg = id ? t`Update` : t`Create`;
+
     action
       .then((res) => {
-        notification.success({ message: t`${id ? 'Update' : 'Create'} category successfully!` });
+        notification.success({ message: t`${actionMsg} category successfully!` });
         form.resetFields();
         onChange(id, res);
       })
       .catch((err) => {
         console.error(err);
-        notification.error({ message: t`${id ? 'Update' : 'Create'} category failed!` });
+        notification.error({ message: t`${actionMsg} category failed!` });
       });
   };
 

@@ -12,6 +12,7 @@ function SunEditor({ error, value, onChange, placeholder, uploadTo, uid, ...othe
     // Upload image to Server
     const formData = new FormData();
     formData.append('file', files[0]);
+    formData.append('in_content', true);
     if (uid) {
       formData.append('post_uid', uid);
     }
@@ -102,6 +103,7 @@ SunEditor.propTypes = {
   error: PropTypes.bool,
   sx: PropTypes.object,
   uploadTo: PropTypes.string.isRequired,
+  uid: PropTypes.string,
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   placeholder: PropTypes.string
 };

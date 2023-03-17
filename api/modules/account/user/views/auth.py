@@ -43,11 +43,11 @@ class LoginView(TokenObtainPairView):
 
         except AuthenticationFailed:
             message = _('Invalid Username or Password!')
-            return Response({ "message" : message }, status=status.HTTP_400_BAD_REQUEST)
+            return Response({ "detail" : message }, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             print('error',repr(e))
             message = _('User not found!')
-            return Response({ "message" : message }, status=status.HTTP_404_NOT_FOUND)
+            return Response({ "detail" : message }, status=status.HTTP_404_NOT_FOUND)
 
     @staticmethod
     def handle_user_login(token):
@@ -80,12 +80,12 @@ class RefreshTokenView(APIView):
         new_access_token = JWTUtils.refresh_token(refresh_token)
         if not new_access_token:
             err_message = _("Can't refresh token!")
-            return Response({ "message" : err_message }, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({ "detail" : err_message }, status=status.HTTP_401_UNAUTHORIZED)
 
         user = JWTUtils.get_user_from_token(new_access_token)
         if not user or not user.token_signature:
             err_message = _("Token is invalid or expired")
-            return Response({ "message" : err_message }, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({ "detail" : err_message }, status=status.HTTP_401_UNAUTHORIZED)
         
         token_signature = JWTUtils.get_token_signature(new_access_token)
         JWTUtils.update_user_token_signature(user, token_signature)
@@ -137,7 +137,7 @@ class ResetPasswordView(APIView):
         confirm_password = params.get('confirm_password')
 
         if not verify_id:
-            invalid_username_msg = { "message": "Invalid username" }
+            invalid_username_msg = { "detail": "Invalid username" }
             user = UserUtils.get_user_by_username(username)
             if not user:
                 return Response(
@@ -149,20 +149,20 @@ class ResetPasswordView(APIView):
                 return Response({"verify_id": result.uid})
 
             return Response(
-                {"message": result},
+                {"detail": result},
                 status=status.HTTP_400_BAD_REQUEST
             )
         
         if password != confirm_password:
             return Response(
-                {"message": "Password and confirm password didn't match"},
+                {"detail": "Password and confirm password didn't match"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         
         ok, verify_item = VerifyUtils.check_otp(verify_id, otp_code)
         if not ok:
             return Response(
-                {"message": "Invalid OTP"},
+                {"detail": "Invalid OTP"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         

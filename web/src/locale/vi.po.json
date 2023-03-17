@@ -18,7 +18,118 @@
       "Home Page": { "msgid": "Home Page", "msgstr": ["Trang chủ"] },
       "Search": { "msgid": "Search", "msgstr": ["Tìm kiếm"] },
       "Search post": { "msgid": "Search post", "msgstr": ["Tìm bài viết"] },
-      "Post List": { "msgid": "Post List", "msgstr": ["Danh sách bài viết"] }
+      "Post List": { "msgid": "Post List", "msgstr": ["Danh sách bài viết"] },
+      "Something was wrong!": { "msgid": "Something was wrong!", "msgstr": ["Đã có lỗi xảy ra!"] },
+      "Full name": { "msgid": "Full name", "msgstr": ["Họ và tên"] },
+      "Email": { "msgid": "Email", "msgstr": ["Email"] },
+      "Phone number": { "msgid": "Phone number", "msgstr": ["Số điện thoại"] },
+      "Profile": { "msgid": "Profile", "msgstr": ["Thông tin cá nhân"] },
+      "Update Profile": { "msgid": "Update Profile", "msgstr": ["Cập nhật"] },
+      "Change password": { "msgid": "Change password", "msgstr": ["Thay đổi mật khẩu"] },
+      "Fullname": { "msgid": "Fullname", "msgstr": ["Họ và tên"] },
+      "The phone number is not valid!": {
+        "msgid": "The phone number is not valid!",
+        "msgstr": ["Số điện thoại không đúng!"]
+      },
+      "First name": { "msgid": "First name", "msgstr": ["Tên"] },
+      "This field is required!": { "msgid": "This field is required!", "msgstr": ["Trường này không được để trống!"] },
+      "Last name": { "msgid": "Last name", "msgstr": ["Họ"] },
+      "Update profile successfully!": {
+        "msgid": "Update profile successfully!",
+        "msgstr": ["Cập nhật thông tin thành công!"]
+      },
+      "Update profile failed!": { "msgid": "Update profile failed!", "msgstr": ["Cập nhật thông tin thất bại!"] },
+      "Groups": { "msgid": "Groups", "msgstr": ["Các nhóm"] },
+      "User active": { "msgid": "User active", "msgstr": ["Hoạt động"] },
+      "Update": { "msgid": "Update", "msgstr": ["Cập nhật"] },
+      "Create": { "msgid": "Create", "msgstr": ["Thêm"] },
+      "${ actionMsg } staff successfully!": {
+        "msgid": "${ actionMsg } staff successfully!",
+        "msgstr": ["${ actionMsg } thành viên thành công!"]
+      },
+      "Update Staff": { "msgid": "Update Staff", "msgstr": ["Cập nhật thành viên"] },
+      "Create new Staff": { "msgid": "Create new Staff", "msgstr": ["Thêm mới thành viên"] },
+      "Banner": { "msgid": "Banner", "msgstr": ["Ảnh bìa"] },
+      "Title": { "msgid": "Title", "msgstr": ["Tiêu đề"] },
+      "Desctiption": { "msgid": "Desctiption", "msgstr": ["Mô tả"] },
+      "Status": { "msgid": "Status", "msgstr": ["Trạng thái"] },
+      "Remove this item failed!": { "msgid": "Remove this item failed!", "msgstr": ["Xoá thất bại"] },
+      "${ actionMsg } post successfully!": {
+        "msgid": "${ actionMsg } post successfully!",
+        "msgstr": ["${ actionMsg } bài viết thành công!"]
+      },
+      "${ actionMsg } post failed!": {
+        "msgid": "${ actionMsg } post failed!",
+        "msgstr": ["${ actionMsg } bài viết thất bại!"]
+      },
+      "Submit": { "msgid": "Submit", "msgstr": ["Gửi"] },
+      "Upload": { "msgid": "Upload", "msgstr": ["Tải lên"] },
+      "ID": { "msgid": "ID", "msgstr": ["ID"] },
+      "Name": { "msgid": "Name", "msgstr": ["Tên"] },
+      "Permissions": { "msgid": "Permissions", "msgstr": ["Các quyền"] },
+      "${ actionMsg } role successfully!": {
+        "msgid": "${ actionMsg } role successfully!",
+        "msgstr": ["${ actionMsg } nhóm thành công!"]
+      },
+      "${ actionMsg } role failed!": {
+        "msgid": "${ actionMsg } role failed!",
+        "msgstr": ["${ actionMsg } nhóm thất bại!"]
+      },
+      "Update Role": { "msgid": "Update Role", "msgstr": ["Cập nhật nhóm"] },
+      "Create new Role": { "msgid": "Create new Role", "msgstr": ["Tạo mới nhóm"] },
+      "Parent": { "msgid": "Parent", "msgstr": ["Danh mục cha"] },
+      "${ actionMsg } category successfully!": {
+        "msgid": "${ actionMsg } category successfully!",
+        "msgstr": ["${ actionMsg } danh mục thành công!"]
+      },
+      "${ actionMsg } category failed!": {
+        "msgid": "${ actionMsg } category failed!",
+        "msgstr": ["${ actionMsg } danh mục thất bại!"]
+      },
+      "Update Category": { "msgid": "Update Category", "msgstr": ["Cập nhật danh mục"] },
+      "Create new Category": { "msgid": "Create new Category", "msgstr": ["Tạo mới danh mục"] },
+      "Languages": { "msgid": "Languages", "msgstr": ["Ngôn ngữ"] },
+      "OTP Code": { "msgid": "OTP Code", "msgstr": ["Mã OTP"] },
+      "Please input your OTP code": { "msgid": "Please input your OTP code", "msgstr": ["Vui lòng nhập mã OTP"] },
+      "Password": { "msgid": "Password", "msgstr": ["Mật khẩu"] },
+      "Confirm password": { "msgid": "Confirm password", "msgstr": ["Xác nhận mật khẩu"] },
+      "Reset password failed!": { "msgid": "Reset password failed!", "msgstr": ["Tạo mới mật khẩu thất bại"] },
+      "The otp code will expire after ${ countDown }": {
+        "msgid": "The otp code will expire after ${ countDown }",
+        "msgstr": ["Mã OTP sẽ hết hạn sau ${ countDown } giây"]
+      },
+      "The otp code has expired!": { "msgid": "The otp code has expired!", "msgstr": ["Mã OTP đã hết hạn"] },
+      "Input your new password": { "msgid": "Input your new password", "msgstr": ["Nhật mật khẩu mới"] },
+      "The OTP code has been sent to ${ maskUsername }": {
+        "msgid": "The OTP code has been sent to ${ maskUsername }",
+        "msgstr": ["Mã OTP đã được gửi đến email ${ maskUsername }"]
+      },
+      "Reset your password": { "msgid": "Reset your password", "msgstr": ["Tạo mới mật khẩu"] },
+      "Input your username": { "msgid": "Input your username", "msgstr": ["Nhập tên đăng nhập"] },
+      "Username": { "msgid": "Username", "msgstr": ["Tên đăng nhập"] },
+      "Input your password": { "msgid": "Input your password", "msgstr": ["Nhập mật khẩu"] },
+      "Login": { "msgid": "Login", "msgstr": ["Đăng nhập"] },
+      "Remember me": { "msgid": "Remember me", "msgstr": ["Ghi nhớ đăng nhập"] },
+      "Forgot password": { "msgid": "Forgot password", "msgstr": ["Quên mật khẩu"] },
+      "Email invalid!": { "msgid": "Email invalid!", "msgstr": ["Email không chính xác"] },
+      "Send": { "msgid": "Send", "msgstr": ["Gửi"] },
+      "Change password successfully!": {
+        "msgid": "Change password successfully!",
+        "msgstr": ["Thay đổi mật khẩu thành công!"]
+      },
+      "Change password failed": { "msgid": "Change password failed", "msgstr": ["Thay đổi mật khẩu thất bại"] },
+      "Manager": { "msgid": "Manager", "msgstr": ["Quản lý"] },
+      "Logout": { "msgid": "Logout", "msgstr": ["Đăng xuất"] },
+      "Article": { "msgid": "Article", "msgstr": ["Bài viết"] },
+      "Category": { "msgid": "Category", "msgstr": ["Danh mục"] },
+      "Staff": { "msgid": "Staff", "msgstr": ["Thành viên"] },
+      "Group": { "msgid": "Group", "msgstr": ["Vai trò"] },
+      "Add new": { "msgid": "Add new", "msgstr": ["Thêm mới"] },
+      "Do you Want to delete this item?": {
+        "msgid": "Do you Want to delete this item?",
+        "msgstr": ["Bạn có muốn xoá mục này không?"]
+      },
+      "Remove": { "msgid": "Remove", "msgstr": ["Xoá"] }
     }
   }
 }

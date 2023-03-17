@@ -2,8 +2,8 @@ import React, { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 // components
-import BlankLayout from '@layouts/blank';
-import MainLayout from '@layouts/main';
+import BlankLayout from '@src/components/layouts/blank';
+import MainLayout from '@src/components/layouts/main';
 import Loading from '@components/Loading';
 import NotFoundPage from '@components/NotFound';
 
@@ -24,14 +24,14 @@ const lazyImport = (Component) => (props) => {
 const HomePage = lazyImport(lazy(() => import('@pages/home')));
 const PostPage = lazyImport(lazy(() => import('@pages/post')));
 
-// auth
+// auth`
 const LoginPage = lazyImport(lazy(() => import('@pages/auth/login')));
 const ForgotPwdPage = lazyImport(lazy(() => import('@pages/auth/forgot-pwd')));
 const ResetPwdPage = lazyImport(lazy(() => import('@pages/auth/reset-pwd')));
 const SignUpPage = lazyImport(lazy(() => import('@pages/auth/SignUp')));
 
 // management
-const ManagerDashboard = lazyImport(lazy(() => import('@src/pages/manage/dashboard')));
+const ManagerProfile = lazyImport(lazy(() => import('@pages/manage/staff/profile')));
 const ManagerStaffPage = lazyImport(lazy(() => import('@src/pages/manage/staff')));
 const ManagerGroup = lazyImport(lazy(() => import('@src/pages/manage/group')));
 const ManagerCategory = lazyImport(lazy(() => import('@src/pages/manage/category')));
@@ -54,7 +54,7 @@ export default function IndexRoute() {
       </Route>
       <Route element={<MainLayout />}>
         <Route path={PRIVATE_PATHS.root} element={<PrivateRouter />}>
-          <Route index element={<ManagerDashboard />} />
+          <Route index element={<ManagerProfile />} />
           <Route path={PRIVATE_PATHS.staff.root} element={<ManagerStaffPage />} />
           <Route path={PRIVATE_PATHS.group.root} element={<ManagerGroup />} />
           <Route path={PRIVATE_PATHS.category.root} element={<ManagerCategory />} />

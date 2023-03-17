@@ -3,7 +3,7 @@
  * @param {any} arr
  * @returns {boolean}
  */
-function isArray(arr) {
+export function isArray(arr) {
   if (!arr) return false;
   return arr.constructor === Array;
 }
@@ -13,9 +13,19 @@ function isArray(arr) {
  * @param {any} obj
  * @returns {boolean}
  */
-function isPlainObject(obj) {
+export function isPlainObject(obj) {
   if (!obj) return false;
   return obj.constructor === Object;
 }
 
-export { isArray, isPlainObject };
+/**
+ * validate phone number in Viet nam
+ * @param {string} phoneNumber
+ * @return {boolean}
+ */
+export const isPhoneNumber = (phoneNumber) => {
+  if (!phoneNumber) return false;
+  const trimmedPhone = phoneNumber.replaceAll(' ', '');
+  const pattern = /^((\+84|0)(3|5|7|8|9|24|28|2\d\d))([0-9]{8})$/;
+  return pattern.test(trimmedPhone);
+};

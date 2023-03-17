@@ -8,7 +8,7 @@ import { Row, Col, Card, Typography } from 'antd';
 
 // app
 import { resetPwdSt, expiredOTPSt } from '@src/recoil/auth/reset-pwd';
-import useCountDown from '@shared/common/useCountDown';
+import useCountDown from '@src/shared/hooks/useCountDown';
 
 import Utils from '@services/helpers/utils';
 import { AUTH_PATHS } from '@src/routes/path';
@@ -54,6 +54,8 @@ function ResetPwd() {
     navigate(AUTH_PATHS.login);
   };
 
+  const maskUsername = Utils.maskEmail(username);
+
   // if (!verifyId) return <Navigate to={AUTH_PATHS.forgotPwd} />;
 
   return (
@@ -66,7 +68,7 @@ function ResetPwd() {
             </Title>
           }
         >
-          {username ? <p>{t`The OTP code has been sent to ${Utils.maskEmail(username)}`}</p> : null}
+          {username ? <p>{t`The OTP code has been sent to ${maskUsername}`}</p> : null}
           {isStarted && verifyId ? <CountDownBox countDown={countDownSeconds} /> : null}
           <ResetPwdForm onChange={handleResetPwd} isOTPExpired={countDownSeconds < 1} />
         </Card>

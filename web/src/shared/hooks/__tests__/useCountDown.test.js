@@ -1,6 +1,6 @@
 import { renderHook, act } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import useCountDown from '../common/useCountDown';
+import useCountDown from '../useCountDown';
 
 describe('Test countdown hooks', () => {
   it('should start countdown when initial', () => {

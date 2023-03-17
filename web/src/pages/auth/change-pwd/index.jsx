@@ -30,11 +30,10 @@ const ChangePwdDialog = React.forwardRef(({ onChange }, ref) => {
 
   return (
     <Modal
-      title={t`Change your password`}
+      title={t`Change password`}
       open={open}
       // onOk={handleOk}
       onCancel={handleCancel}
-      width="80%"
       confirmLoading={loading}
       okButtonProps={{ form: ChangePwdForm.formName, key: 'submit', htmlType: 'submit' }}
     >

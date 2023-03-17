@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { t } from 'ttag';
+
+// antd
+import { Button, Modal, Upload, notification } from 'antd';
 import { UploadOutlined, ExclamationCircleFilled } from '@ant-design/icons';
-import { Button, Modal, Upload } from 'antd';
+
+// app
+import { deleteAttachment } from '@services/api/attachment';
 
 const { confirm } = Modal;
 
-const crudUrl = 'articles/attachment/';
 const transformFiles = (files) => {
   return files.map((file) => (file.id ? { ...file, name: file.title, url: file.file } : file));
 };
 // ----------------------------------------------------------------
 const ArticleAttachment = ({ files, onChange }) => {
-  const [uploading, setUploading] = useState(false);
   const fileList = transformFiles(files);
   console.log({ files });
 
@@ -32,14 +36,12 @@ const ArticleAttachment = ({ files, onChange }) => {
   const showConfirm = (file) => {
     if (file.id) {
       confirm({
-        title: 'Do you Want to delete this file?',
+        title: 'Do you want to delete this file?',
         icon: <ExclamationCircleFilled />,
         onOk() {
-          return new Promise((resolve, reject) => {
-            setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-          })
+          deleteAttachment(file.id)
             .then(() => onConfirm(file))
-            .catch(() => console.log('Oops errors!'));
+            .catch((e) => notification.error({ message: t`Remove this item failed!` }));
         }
       });
     } else {

@@ -24,12 +24,6 @@ class UserUtils:
         sr.is_valid(raise_exception=True)
         user = sr.save()
 
-        if "groups" in data:
-            groups = [int(group) for group in data.get("groups", [])]
-            if list(groups):
-                group_list = Group.objects.filter(id__in=groups)
-                for group in group_list:
-                    group.user_set.add(user)
         return user
 
     @staticmethod
@@ -39,15 +33,6 @@ class UserUtils:
         sr.is_valid(raise_exception=True)
         user = sr.save()
 
-        if "groups" in data:
-            groups = [int(group) for group in data.get("groups", [])]
-            for group in user.groups.all():
-                group.user_set.remove(user)
-
-            if list(groups):
-                group_list = Group.objects.filter(id__in=groups)
-                for group in group_list:
-                    group.user_set.add(user)
         return user
     
     @staticmethod

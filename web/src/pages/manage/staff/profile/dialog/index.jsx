@@ -15,7 +15,7 @@ import Form from './form';
 
 // ----------------------------------------------------------------
 const ProfileFormDialog = React.forwardRef(({ onChange }, ref) => {
-  const [data, setData] = useRecoilState(profileSt);
+  const [profile, setProfile] = useRecoilState(profileSt);
 
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
@@ -25,7 +25,7 @@ const ProfileFormDialog = React.forwardRef(({ onChange }, ref) => {
     toggleModal: () => {
       setLoading(true);
       getProfile()
-        .then(setData)
+        .then(setProfile)
         .catch(console.log)
         .finally(() => {
           setLoading(false);
@@ -42,8 +42,11 @@ const ProfileFormDialog = React.forwardRef(({ onChange }, ref) => {
 
   const onFinish = (data) => {
     setOpen(false);
+    setProfile({ ...profile, ...data });
     onChange(data);
   };
+
+  console.log({ profile });
 
   return (
     <Modal
@@ -54,7 +57,7 @@ const ProfileFormDialog = React.forwardRef(({ onChange }, ref) => {
       confirmLoading={confirmLoading}
       okButtonProps={{ form: Form.formName, key: 'submit', htmlType: 'submit' }}
     >
-      {loading ? <Loading /> : <Form onChange={onFinish} data={data} onLoading={setConfirmLoading} />}
+      {loading ? <Loading /> : <Form onChange={onFinish} data={profile} onLoading={setConfirmLoading} />}
     </Modal>
   );
 });

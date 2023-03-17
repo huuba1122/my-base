@@ -1,7 +1,7 @@
 import { renderHook, act } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 
-import useToggle from '../common/useToggle';
+import useToggle from '../useToggle';
 
 describe('test useToggle hooks', () => {
   it('check toggle', () => {

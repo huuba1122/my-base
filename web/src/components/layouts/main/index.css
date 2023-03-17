@@ -106,3 +106,7 @@
 .dropdown-user-setting {
   min-width: 100px;
 }
+
+.lang-active {
+  color: #1677ff;
+}

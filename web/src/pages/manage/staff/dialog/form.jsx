@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { t } from 'ttag';
 import { useRecoilValue } from 'recoil';
 
@@ -8,6 +9,7 @@ import { Form, Input, notification, Checkbox } from 'antd';
 // apps
 import { groupOptionsSlt } from '@src/recoil/user';
 import Utils from '@src/services/helpers/utils';
+import FormUtils from '@services/helpers/form-utils';
 import { createStaff, updateStaff } from '@src/services/api/staff';
 import SelectInput from '@components/comon/input/select';
 
@@ -16,6 +18,11 @@ const formName = 'StaffForm';
 
 const emptyFormData = { name: '', permissions: [] };
 
+// ----------------------------------------------------------------
+StaffForm.propTypes = {
+  onChange: PropTypes.func,
+  data: PropTypes.object
+};
 function StaffForm({ onChange, data }) {
   const [form] = Form.useForm();
 
@@ -64,14 +71,12 @@ function StaffForm({ onChange, data }) {
     const action = id ? updateStaff(id, values) : createStaff(values);
     action
       .then((res) => {
-        notification.success({ message: t`${id ? 'Update' : 'Create'} staff successfully!` });
+        const actionMsg = id ? t`Update` : t`Create`;
+        notification.success({ message: t`${actionMsg} staff successfully!` });
         form.resetFields();
         onChange(id, res);
       })
-      .catch((err) => {
-        console.error(err);
-        notification.error({ message: t`${id ? 'Update' : 'Create'} staff failed!` });
-      });
+      .catch(FormUtils.setFormErrors(form));
   };
 
   return (

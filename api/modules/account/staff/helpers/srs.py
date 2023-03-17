@@ -14,7 +14,7 @@ class StaffSr(ModelSerializer):
         rep["first_name"] = user.first_name
         rep["last_name"] = user.last_name
         rep["email"] = user.email
-        rep["phone_number"] = str(user.phone_number)
+        rep["phone_number"] = user.phone_number
         rep["groups"] = user.groups.values_list("id", flat=True)
         rep["is_active"] = obj.user.is_active
         return rep

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Transfer } from 'antd';
+import PropTypes from 'prop-types';
 
 import Utils from '@src/services/helpers/utils';
 
@@ -27,6 +28,13 @@ export class Service {
     return value.map((i) => parseInt(i, 10));
   }
 }
+// ----------------------------------------------------------------
+TransferInput.propTypes = {
+  value: PropTypes.array,
+  onChange: PropTypes.func,
+  options: PropTypes.array,
+  disabled: PropTypes.bool
+};
 
 export default function TransferInput({ value, onChange, options, disabled = false }) {
   return (
@@ -42,6 +50,7 @@ export default function TransferInput({ value, onChange, options, disabled = fal
         width: 458,
         height: 512
       }}
+      style={{ overflow: 'auto' }}
     />
   );
 }

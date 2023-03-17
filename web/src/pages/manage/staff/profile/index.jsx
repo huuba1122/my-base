@@ -7,36 +7,39 @@ import { Divider, Button, Space } from 'antd';
 
 // apps
 import { profileSt } from '@recoil/user/profile';
-import PageHeading from '@src/components/comon/PageHeading';
+import PageHeading from '@components/comon/PageHeading';
 import ChangePwdDialog from '@pages/auth/change-pwd';
 import ProfileSummary from './summary';
+import ProfileFormDialog from './dialog';
 
+//----------------------------------------------------------------
 export default function Profile() {
   const changePwdRef = React.useRef(null);
-  const editProRef = React.useRef(null);
-  const dataProfile = useRecoilValue(profileSt);
+  const editRef = React.useRef(null);
+  const profile = useRecoilValue(profileSt);
 
   const toggleChangePwdDialog = () => {
     changePwdRef.current.toggleModal();
   };
 
   const toggleEditProfileDialog = () => {
-    console.log('toggle profile dialog');
+    editRef.current.toggleModal();
   };
 
   return (
     <>
       <PageHeading>{t`Profile`}</PageHeading>
       <div className="profile-content">
-        <ProfileSummary data={dataProfile} />
+        <ProfileSummary data={profile} />
         <Divider />
 
         <Space size={16}>
-          <Button onClick={toggleEditProfileDialog}>{t`Update Profile`}</Button>
-          <Button onClick={toggleChangePwdDialog}>{t`Change password`}</Button>
+          <Button onClick={toggleEditProfileDialog} type="primary" ghost>{t`Update Profile`}</Button>
+          <Button onClick={toggleChangePwdDialog} type="primary" ghost>{t`Change password`}</Button>
         </Space>
 
         <ChangePwdDialog onChange={() => false} ref={changePwdRef} />
+        <ProfileFormDialog onChange={() => false} ref={editRef} />
       </div>
     </>
   );

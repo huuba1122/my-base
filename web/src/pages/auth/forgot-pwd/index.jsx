@@ -41,7 +41,7 @@ function ForgotPwd() {
           <Card
             title={
               <Title level={3} style={{ textAlign: 'center', padding: 0, marginBottom: 0 }}>
-                {t`Forgot your password`}?
+                {t`Forgot password`}?
               </Title>
             }
           >

@@ -6,18 +6,358 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pages/home/index.jsx:31
-msgid "Home Page"
-msgstr ""
-
-#: src/pages/home/index.jsx:34
-msgid "Search"
-msgstr ""
-
 #: src/pages/home/index.jsx:35
-msgid "Search post"
-msgstr ""
+msgid "Home Page"
+msgstr "Trang chủ"
 
-#: src/pages/home/index.jsx:39
+#: src/pages/home/index.jsx:45
+msgid "Search"
+msgstr "Tìm kiếm"
+
+#: src/pages/home/index.jsx:46
+msgid "Search post"
+msgstr "Tìm bài viết"
+
+#: src/pages/home/index.jsx:50
 msgid "Post List"
-msgstr ""
+msgstr "Danh sách bài viết"
+
+#: src/services/api/axios.js:87
+msgid "Something was wrong!"
+msgstr "Đã có lỗi xảy ra!"
+
+#: src/pages/manage/staff/table/index.jsx:66
+msgid "Full name"
+msgstr "Họ và tên"
+
+#: src/pages/manage/staff/dialog/form.jsx:42
+#: src/pages/manage/staff/profile/summary.jsx:20
+#: src/pages/manage/staff/table/index.jsx:71
+msgid "Email"
+msgstr "Email"
+
+#: src/pages/manage/staff/dialog/form.jsx:47
+#: src/pages/manage/staff/profile/dialog/form.jsx:35
+#: src/pages/manage/staff/profile/summary.jsx:25
+#: src/pages/manage/staff/table/index.jsx:76
+msgid "Phone number"
+msgstr "Số điện thoại"
+
+#: src/components/layouts/main/Sidebar.jsx:29
+#: src/pages/manage/staff/profile/index.jsx:31
+msgid "Profile"
+msgstr "Thông tin cá nhân"
+
+#: src/pages/manage/staff/profile/dialog/index.jsx:53
+#: src/pages/manage/staff/profile/index.jsx:37
+msgid "Update Profile"
+msgstr "Cập nhật"
+
+#: src/pages/manage/staff/profile/index.jsx:38
+msgid "Change password"
+msgstr "Đổi mật khẩu"
+
+#: src/pages/manage/staff/profile/summary.jsx:15
+msgid "Fullname"
+msgstr "Họ và tên"
+
+#: src/pages/manage/staff/profile/dialog/form.jsx:38
+#: src/pages/manage/staff/profile/dialog/form.jsx:41
+msgid "The phone number is not valid!"
+msgstr "Số điện thoại không đúng!"
+
+#: src/pages/manage/staff/dialog/form.jsx:51
+#: src/pages/manage/staff/profile/dialog/form.jsx:50
+msgid "First name"
+msgstr "Tên"
+
+#: src/pages/manage/category/dialog/form.jsx:40
+#: src/pages/manage/group/dialog/form.jsx:24
+#: src/pages/manage/group/dialog/form.jsx:29
+#: src/pages/manage/staff/dialog/form.jsx:43
+#: src/pages/manage/staff/dialog/form.jsx:52
+#: src/pages/manage/staff/dialog/form.jsx:57
+#: src/pages/manage/staff/dialog/form.jsx:62
+#: src/pages/manage/staff/profile/dialog/form.jsx:51
+#: src/pages/manage/staff/profile/dialog/form.jsx:56
+msgid "This field is required!"
+msgstr "Trường này không được để trống!"
+
+#: src/pages/manage/staff/dialog/form.jsx:56
+#: src/pages/manage/staff/profile/dialog/form.jsx:55
+msgid "Last name"
+msgstr "Họ"
+
+#: src/pages/manage/staff/profile/dialog/form.jsx:64
+msgid "Update profile successfully!"
+msgstr "Cập nhật thông tin thành công!"
+
+#: src/pages/manage/staff/profile/dialog/form.jsx:70
+msgid "Update profile failed!"
+msgstr "Cập nhật thông tin thất bại!"
+
+#: src/pages/manage/staff/dialog/form.jsx:61
+msgid "Groups"
+msgstr "Các nhóm"
+
+#: src/pages/manage/staff/dialog/form.jsx:66
+msgid "User active"
+msgstr "Hoạt động"
+
+#: src/components/comon/table/buttons.jsx:29
+#: src/pages/manage/category/dialog/form.jsx:56
+#: src/pages/manage/group/dialog/form.jsx:35
+#: src/pages/manage/post/form/form.jsx:119
+#: src/pages/manage/staff/dialog/form.jsx:74
+msgid "Update"
+msgstr "Cập nhật"
+
+#: src/pages/manage/category/dialog/form.jsx:56
+#: src/pages/manage/group/dialog/form.jsx:35
+#: src/pages/manage/post/form/form.jsx:119
+#: src/pages/manage/staff/dialog/form.jsx:74
+msgid "Create"
+msgstr "Thêm"
+
+#: src/pages/manage/staff/dialog/form.jsx:75
+#, javascript-format
+msgid "${ actionMsg } staff successfully!"
+msgstr "${ actionMsg } thành viên thành công!"
+
+#: src/pages/manage/staff/dialog/index.jsx:50
+msgid "Update Staff"
+msgstr "Cập nhật thành viên"
+
+#: src/pages/manage/staff/dialog/index.jsx:50
+msgid "Create new Staff"
+msgstr "Thêm mới thành viên"
+
+#: src/pages/manage/post/table/index.jsx:73
+msgid "Banner"
+msgstr "Ảnh bìa"
+
+#: src/pages/manage/category/dialog/form.jsx:39
+#: src/pages/manage/category/table/index.jsx:67
+#: src/pages/manage/post/table/index.jsx:78
+msgid "Title"
+msgstr "Tiêu đề"
+
+#: src/pages/manage/post/table/index.jsx:83
+msgid "Desctiption"
+msgstr "Mô tả"
+
+#: src/pages/manage/post/table/index.jsx:88
+msgid "Status"
+msgstr "Trạng thái"
+
+#: src/pages/manage/post/form/attachments.jsx:44
+msgid "Remove this item failed!"
+msgstr "Xoá thất bại"
+
+#: src/pages/manage/post/form/form.jsx:125
+#, javascript-format
+msgid "${ actionMsg } post successfully!"
+msgstr "${ actionMsg } bài viết thành công!"
+
+#: src/pages/manage/post/form/form.jsx:130
+msgid "${ actionMsg } post failed!"
+msgstr "${ actionMsg } bài viết thất bại!"
+
+#: src/pages/auth/reset-pwd/form.jsx:89
+#: src/pages/manage/post/form/form.jsx:176
+msgid "Submit"
+msgstr "Gửi"
+
+#: src/pages/manage/post/form/upload-input.jsx:100
+msgid "Upload"
+msgstr "Tải lên"
+
+#: src/pages/manage/category/table/index.jsx:63
+#: src/pages/manage/group/table/index.jsx:64
+msgid "ID"
+msgstr "ID"
+
+#: src/pages/manage/group/dialog/form.jsx:23
+#: src/pages/manage/group/table/index.jsx:69
+msgid "Name"
+msgstr "Tên"
+
+#: src/pages/manage/group/dialog/form.jsx:28
+msgid "Permissions"
+msgstr "Các quyền"
+
+#: src/pages/manage/group/dialog/form.jsx:38
+#, javascript-format
+msgid "${ actionMsg } role successfully!"
+msgstr "${ actionMsg } nhóm thành công!"
+
+#: src/pages/manage/group/dialog/form.jsx:44
+msgid "${ actionMsg } role failed!"
+msgstr "${ actionMsg } nhóm thất bại!"
+
+#: src/pages/manage/group/dialog/index.jsx:49
+msgid "Update Role"
+msgstr "Cập nhật nhóm"
+
+#: src/pages/manage/group/dialog/index.jsx:49
+msgid "Create new Role"
+msgstr "Tạo mới nhóm"
+
+#: src/pages/manage/category/dialog/form.jsx:44
+#: src/pages/manage/category/table/index.jsx:71
+msgid "Parent"
+msgstr "Danh mục cha"
+
+#: src/pages/manage/category/dialog/form.jsx:60
+msgid "${ actionMsg } category successfully!"
+msgstr "${ actionMsg } danh mục thành công!"
+
+#: src/pages/manage/category/dialog/form.jsx:66
+msgid "${ actionMsg } category failed!"
+msgstr "${ actionMsg } danh mục thất bại!"
+
+#: src/pages/manage/category/dialog/index.jsx:49
+msgid "Update Category"
+msgstr "Cập nhật danh mục"
+
+#: src/pages/manage/category/dialog/index.jsx:49
+msgid "Create new Category"
+msgstr "Tạo mới danh mục"
+
+#: src/pages/home/index.jsx:38
+msgid "Languages"
+msgstr "Ngôn ngữ"
+
+#: src/pages/auth/otp-dialog/form.jsx:19
+#: src/pages/auth/reset-pwd/form.jsx:29
+msgid "OTP Code"
+msgstr "Mã OTP"
+
+#: src/pages/auth/otp-dialog/form.jsx:20
+#: src/pages/auth/reset-pwd/form.jsx:30
+msgid "Please input your OTP code"
+msgstr "Vui lòng nhập mã OTP"
+
+#: src/pages/auth/login/form.jsx:35
+#: src/pages/auth/otp-dialog/form.jsx:24
+#: src/pages/auth/reset-pwd/form.jsx:34
+msgid "Password"
+msgstr "Mật khẩu"
+
+#: src/pages/auth/otp-dialog/form.jsx:30
+#: src/pages/auth/reset-pwd/form.jsx:40
+msgid "Confirm password"
+msgstr "Xác nhận mật khẩu"
+
+#: src/pages/auth/otp-dialog/form.jsx:53
+#: src/pages/auth/reset-pwd/form.jsx:63
+msgid "Reset password failed!"
+msgstr "Tạo mới mật khẩu thất bại"
+
+#: src/pages/auth/otp-dialog/index.jsx:29
+#: src/pages/auth/reset-pwd/index.jsx:35
+msgid "The otp code will expire after ${ countDown }"
+msgstr "Mã OTP sẽ hết hạn sau ${ countDown } giây"
+
+#: src/pages/auth/otp-dialog/index.jsx:30
+#: src/pages/auth/reset-pwd/index.jsx:36
+msgid "The otp code has expired!"
+msgstr "Mã OTP đã hết hạn"
+
+#: src/pages/auth/reset-pwd/index.jsx:67
+msgid "Input your new password"
+msgstr "Nhật mật khẩu mới"
+
+#: src/pages/auth/otp-dialog/index.jsx:63
+#: src/pages/auth/reset-pwd/index.jsx:71
+msgid "The OTP code has been sent to ${ maskUsername }"
+msgstr "Mã OTP đã được gửi đến email ${ maskUsername }"
+
+#: src/pages/auth/otp-dialog/index.jsx:56
+msgid "Reset your password"
+msgstr "Tạo mới mật khẩu"
+
+#: src/pages/auth/login/form.jsx:29
+msgid "Input your username"
+msgstr "Nhập tên đăng nhập"
+
+#: src/pages/auth/login/form.jsx:30
+msgid "Username"
+msgstr "Tên đăng nhập"
+
+#: src/pages/auth/login/form.jsx:34
+msgid "Input your password"
+msgstr "Nhập mật khẩu"
+
+#: src/pages/auth/login/form.jsx:62
+#: src/pages/auth/login/index.jsx:37
+msgid "Login"
+msgstr "Đăng nhập"
+
+#: src/pages/auth/login/index.jsx:48
+msgid "Remember me"
+msgstr "Ghi nhớ đăng nhập"
+
+#: src/pages/auth/login/index.jsx:52
+msgid "Forgot password"
+msgstr "Quên mật khẩu"
+
+#: src/pages/auth/forgot-pwd/form.jsx:33
+msgid "Email invalid!"
+msgstr "Email không chính xác"
+
+#: src/pages/auth/forgot-pwd/form.jsx:45
+msgid "Send"
+msgstr "Gửi"
+
+#: src/pages/auth/forgot-pwd/index.jsx:44
+msgid "Forgot password"
+msgstr "Quên mật khẩu"
+
+#: src/pages/auth/change-pwd/form.jsx:59
+msgid "Change password successfully!"
+msgstr "Thay đổi mật khẩu thành công!"
+
+#: src/pages/auth/change-pwd/form.jsx:63
+msgid "Change password failed"
+msgstr "Thay đổi mật khẩu thất bại"
+
+#: src/pages/auth/change-pwd/index.jsx:33
+msgid "Change password"
+msgstr "Thay đổi mật khẩu"
+
+#: src/components/layouts/main/NavBar.jsx:59
+msgid "Manager"
+msgstr "Quản lý"
+
+#: src/components/layouts/main/NavBar.jsx:63
+msgid "Logout"
+msgstr "Đăng xuất"
+
+#: src/components/layouts/main/Sidebar.jsx:35
+msgid "Article"
+msgstr "Bài viết"
+
+#: src/components/layouts/main/Sidebar.jsx:41
+msgid "Category"
+msgstr "Danh mục"
+
+#: src/components/layouts/main/Sidebar.jsx:47
+msgid "Staff"
+msgstr "Thành viên"
+
+#: src/components/layouts/main/Sidebar.jsx:53
+msgid "Group"
+msgstr "Vai trò"
+
+#: src/components/comon/table/buttons.jsx:18
+msgid "Add new"
+msgstr "Thêm mới"
+
+#: src/components/comon/table/buttons.jsx:40
+msgid "Do you Want to delete this item?"
+msgstr "Bạn có muốn xoá mục này không?"
+
+#: src/components/comon/table/buttons.jsx:50
+msgid "Remove"
+msgstr "Xoá"

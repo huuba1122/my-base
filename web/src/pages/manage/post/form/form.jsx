@@ -19,7 +19,7 @@ import ArticleAttachment from './attachments';
 import { STATUS, URL_DELETE_BANNER } from '../consts';
 
 const formName = 'PostForm';
-const postUuid = uuid4();
+const newUid = uuid4();
 
 const emptyFormData = {
   id: 0,
@@ -39,6 +39,7 @@ function PostForm({ data, onChange }) {
   const { id } = initialValues;
 
   const deleteBannerUrl = id ? URL_DELETE_BANNER.replace(':id', id) : '';
+  const postUuid = Utils.isBlankObj(data) ? newUid : data.uid;
 
   const [form] = Form.useForm();
   const [attachments, setAttachments] = React.useState(initialValues?.attachments || []);
@@ -85,12 +86,15 @@ function PostForm({ data, onChange }) {
     return validFiles.map((file) => file.originFileObj);
   };
 
-  const bulkCreateAttachments = (attachments, postUid) => {
+  const bulkCreateAttachments = (attachments, postUid, postId) => {
     if (!attachments.length) Promise.resolve(1);
     const attachmentRequest = attachments.map((attachment) => {
       const formData = new FormData();
       formData.append('file', attachment);
       formData.append('post_uid', postUid);
+      if (postId) {
+        formData.append('post', postId);
+      }
       return createAttachment(formData);
     });
     return Promise.all(attachmentRequest);
@@ -112,18 +116,18 @@ function PostForm({ data, onChange }) {
       formData.append('banner', values.banner);
     }
     formData.append('uid', data?.uid ? data?.uid : postUuid);
-
+    const actionMsg = id ? t`Update` : t`Create`;
     try {
       const newAttachments = getValidFiles(attachments);
-      await bulkCreateAttachments(newAttachments, postUuid);
+      await bulkCreateAttachments(newAttachments, postUuid, id);
       const action = id ? updatePost(id, formData) : createPost(formData);
       const res = await action;
-      notification.success({ message: t`${id ? 'Update' : 'Create'} post successfully!` });
+      notification.success({ message: t`${actionMsg} post successfully!` });
       form.resetFields();
       onChange(id, res);
     } catch (error) {
       console.log('create post error', error);
-      notification.error({ message: t`${id ? 'Update' : 'Create'} post failed!` });
+      notification.error({ message: t`${actionMsg} post failed!` });
     }
   };
 

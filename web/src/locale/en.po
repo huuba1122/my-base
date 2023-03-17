@@ -6,18 +6,362 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/pages/home/index.jsx:31
+#: src/pages/home/index.jsx:35
 msgid "Home Page"
 msgstr ""
 
-#: src/pages/home/index.jsx:34
+#: src/pages/home/index.jsx:45
 msgid "Search"
 msgstr ""
 
-#: src/pages/home/index.jsx:35
+#: src/pages/home/index.jsx:46
 msgid "Search post"
 msgstr ""
 
-#: src/pages/home/index.jsx:39
+#: src/pages/home/index.jsx:50
 msgid "Post List"
+msgstr ""
+
+#: src/services/api/axios.js:87
+msgid "Something was wrong!"
+msgstr ""
+
+#: src/pages/manage/staff/table/index.jsx:66
+msgid "Full name"
+msgstr ""
+
+#: src/pages/manage/staff/dialog/form.jsx:42
+#: src/pages/manage/staff/profile/summary.jsx:20
+#: src/pages/manage/staff/table/index.jsx:71
+msgid "Email"
+msgstr ""
+
+#: src/pages/manage/staff/dialog/form.jsx:47
+#: src/pages/manage/staff/profile/dialog/form.jsx:35
+#: src/pages/manage/staff/profile/summary.jsx:25
+#: src/pages/manage/staff/table/index.jsx:76
+msgid "Phone number"
+msgstr ""
+
+#: src/components/layouts/main/Sidebar.jsx:29
+#: src/pages/manage/staff/profile/index.jsx:31
+msgid "Profile"
+msgstr ""
+
+#: src/pages/manage/staff/profile/dialog/index.jsx:53
+#: src/pages/manage/staff/profile/index.jsx:37
+msgid "Update Profile"
+msgstr ""
+
+#: src/pages/manage/staff/profile/index.jsx:38
+msgid "Change password"
+msgstr ""
+
+#: src/pages/manage/staff/profile/summary.jsx:15
+msgid "Fullname"
+msgstr ""
+
+#: src/pages/manage/staff/profile/dialog/form.jsx:38
+#: src/pages/manage/staff/profile/dialog/form.jsx:41
+msgid "The phone number is not valid!"
+msgstr ""
+
+#: src/pages/manage/staff/dialog/form.jsx:51
+#: src/pages/manage/staff/profile/dialog/form.jsx:50
+msgid "First name"
+msgstr ""
+
+#: src/pages/manage/category/dialog/form.jsx:40
+#: src/pages/manage/group/dialog/form.jsx:24
+#: src/pages/manage/group/dialog/form.jsx:29
+#: src/pages/manage/staff/dialog/form.jsx:43
+#: src/pages/manage/staff/dialog/form.jsx:52
+#: src/pages/manage/staff/dialog/form.jsx:57
+#: src/pages/manage/staff/dialog/form.jsx:62
+#: src/pages/manage/staff/profile/dialog/form.jsx:51
+#: src/pages/manage/staff/profile/dialog/form.jsx:56
+msgid "This field is required!"
+msgstr ""
+
+#: src/pages/manage/staff/dialog/form.jsx:56
+#: src/pages/manage/staff/profile/dialog/form.jsx:55
+msgid "Last name"
+msgstr ""
+
+#: src/pages/manage/staff/profile/dialog/form.jsx:64
+msgid "Update profile successfully!"
+msgstr ""
+
+#: src/pages/manage/staff/profile/dialog/form.jsx:70
+msgid "Update profile failed!"
+msgstr ""
+
+#: src/pages/manage/staff/dialog/form.jsx:61
+msgid "Groups"
+msgstr ""
+
+#: src/pages/manage/staff/dialog/form.jsx:66
+msgid "User active"
+msgstr ""
+
+#: src/components/comon/table/buttons.jsx:29
+#: src/pages/manage/category/dialog/form.jsx:56
+#: src/pages/manage/group/dialog/form.jsx:35
+#: src/pages/manage/post/form/form.jsx:119
+#: src/pages/manage/staff/dialog/form.jsx:74
+msgid "Update"
+msgstr ""
+
+#: src/pages/manage/category/dialog/form.jsx:56
+#: src/pages/manage/group/dialog/form.jsx:35
+#: src/pages/manage/post/form/form.jsx:119
+#: src/pages/manage/staff/dialog/form.jsx:74
+msgid "Create"
+msgstr ""
+
+#: src/pages/manage/staff/dialog/form.jsx:75
+#, javascript-format
+msgid "${ actionMsg } staff successfully!"
+msgstr ""
+
+#: src/pages/manage/staff/dialog/index.jsx:50
+msgid "Update Staff"
+msgstr ""
+
+#: src/pages/manage/staff/dialog/index.jsx:50
+msgid "Create new Staff"
+msgstr ""
+
+#: src/pages/manage/post/table/index.jsx:73
+msgid "Banner"
+msgstr ""
+
+#: src/pages/manage/category/dialog/form.jsx:39
+#: src/pages/manage/category/table/index.jsx:67
+#: src/pages/manage/post/table/index.jsx:78
+msgid "Title"
+msgstr ""
+
+#: src/pages/manage/post/table/index.jsx:83
+msgid "Desctiption"
+msgstr ""
+
+#: src/pages/manage/post/table/index.jsx:88
+msgid "Status"
+msgstr ""
+
+#: src/pages/manage/post/form/attachments.jsx:44
+msgid "Remove this item failed!"
+msgstr ""
+
+#: src/pages/manage/post/form/form.jsx:125
+msgid "${ actionMsg } post successfully!"
+msgstr ""
+
+#: src/pages/manage/post/form/form.jsx:130
+msgid "${ actionMsg } post failed!"
+msgstr ""
+
+#: src/pages/auth/reset-pwd/form.jsx:89
+#: src/pages/manage/post/form/form.jsx:176
+msgid "Submit"
+msgstr ""
+
+#: src/pages/manage/post/form/upload-input.jsx:100
+msgid "Upload"
+msgstr ""
+
+#: src/pages/manage/category/table/index.jsx:63
+#: src/pages/manage/group/table/index.jsx:64
+msgid "ID"
+msgstr ""
+
+#: src/pages/manage/group/dialog/form.jsx:23
+#: src/pages/manage/group/table/index.jsx:69
+msgid "Name"
+msgstr ""
+
+#: src/pages/manage/group/dialog/form.jsx:28
+msgid "Permissions"
+msgstr ""
+
+#: src/pages/manage/group/dialog/form.jsx:38
+#, javascript-format
+msgid "${ actionMsg } role successfully!"
+msgstr ""
+
+#: src/pages/manage/group/dialog/form.jsx:44
+msgid "${ actionMsg } role failed!"
+msgstr ""
+
+#: src/pages/manage/group/dialog/index.jsx:49
+msgid "Update Role"
+msgstr ""
+
+#: src/pages/manage/group/dialog/index.jsx:49
+msgid "Create new Role"
+msgstr ""
+
+#: src/pages/manage/category/dialog/form.jsx:44
+#: src/pages/manage/category/table/index.jsx:71
+msgid "Parent"
+msgstr ""
+
+#: src/pages/manage/category/dialog/form.jsx:60
+#, javascript-format
+msgid "${ actionMsg } category successfully!"
+msgstr ""
+
+#: src/pages/manage/category/dialog/form.jsx:66
+msgid "${ actionMsg } category failed!"
+msgstr ""
+
+#: src/pages/manage/category/dialog/index.jsx:49
+msgid "Update Category"
+msgstr ""
+
+#: src/pages/manage/category/dialog/index.jsx:49
+msgid "Create new Category"
+msgstr ""
+
+#: src/pages/home/index.jsx:38
+msgid "Languages"
+msgstr ""
+
+#: src/pages/auth/otp-dialog/form.jsx:19
+#: src/pages/auth/reset-pwd/form.jsx:29
+msgid "OTP Code"
+msgstr ""
+
+#: src/pages/auth/otp-dialog/form.jsx:20
+#: src/pages/auth/reset-pwd/form.jsx:30
+msgid "Please input your OTP code"
+msgstr ""
+
+#: src/pages/auth/login/form.jsx:35
+#: src/pages/auth/otp-dialog/form.jsx:24
+#: src/pages/auth/reset-pwd/form.jsx:34
+msgid "Password"
+msgstr ""
+
+#: src/pages/auth/otp-dialog/form.jsx:30
+#: src/pages/auth/reset-pwd/form.jsx:40
+msgid "Confirm password"
+msgstr ""
+
+#: src/pages/auth/otp-dialog/form.jsx:53
+#: src/pages/auth/reset-pwd/form.jsx:63
+msgid "Reset password failed!"
+msgstr ""
+
+#: src/pages/auth/otp-dialog/index.jsx:29
+#: src/pages/auth/reset-pwd/index.jsx:35
+#, javascript-format
+msgid "The otp code will expire after ${ countDown }"
+msgstr ""
+
+#: src/pages/auth/otp-dialog/index.jsx:30
+#: src/pages/auth/reset-pwd/index.jsx:36
+msgid "The otp code has expired!"
+msgstr ""
+
+#: src/pages/auth/reset-pwd/index.jsx:67
+#. if (!verifyId) return <Navigate to={AUTH_PATHS.forgotPwd} />;
+msgid "Input your new password"
+msgstr ""
+
+#: src/pages/auth/otp-dialog/index.jsx:63
+#: src/pages/auth/reset-pwd/index.jsx:71
+#. if (!verifyId) return <Navigate to={AUTH_PATHS.forgotPwd} />;
+#, javascript-format
+msgid "The OTP code has been sent to ${ maskUsername }"
+msgstr ""
+
+#: src/pages/auth/otp-dialog/index.jsx:56
+msgid "Reset your password"
+msgstr ""
+
+#: src/pages/auth/login/form.jsx:29
+msgid "Input your username"
+msgstr ""
+
+#: src/pages/auth/login/form.jsx:30
+msgid "Username"
+msgstr ""
+
+#: src/pages/auth/login/form.jsx:34
+msgid "Input your password"
+msgstr ""
+
+#: src/pages/auth/login/form.jsx:62
+#: src/pages/auth/login/index.jsx:37
+msgid "Login"
+msgstr ""
+
+#: src/pages/auth/login/index.jsx:48
+msgid "Remember me"
+msgstr ""
+
+#: src/pages/auth/login/index.jsx:52
+msgid "Forgot password"
+msgstr ""
+
+#: src/pages/auth/forgot-pwd/form.jsx:33
+msgid "Email invalid!"
+msgstr ""
+
+#: src/pages/auth/forgot-pwd/form.jsx:45
+msgid "Send"
+msgstr ""
+
+#: src/pages/auth/forgot-pwd/index.jsx:44
+msgid "Forgot your password"
+msgstr ""
+
+#: src/pages/auth/change-pwd/form.jsx:59
+msgid "Change password successfully!"
+msgstr ""
+
+#: src/pages/auth/change-pwd/form.jsx:63
+msgid "Change password failed"
+msgstr ""
+
+#: src/pages/auth/change-pwd/index.jsx:33
+msgid "Change your password"
+msgstr ""
+
+#: src/components/layouts/main/NavBar.jsx:59
+msgid "Manager"
+msgstr ""
+
+#: src/components/layouts/main/NavBar.jsx:63
+msgid "Logout"
+msgstr ""
+
+#: src/components/layouts/main/Sidebar.jsx:35
+msgid "Article"
+msgstr ""
+
+#: src/components/layouts/main/Sidebar.jsx:41
+msgid "Category"
+msgstr ""
+
+#: src/components/layouts/main/Sidebar.jsx:47
+msgid "Staff"
+msgstr ""
+
+#: src/components/layouts/main/Sidebar.jsx:53
+msgid "Group"
+msgstr ""
+
+#: src/components/comon/table/buttons.jsx:18
+msgid "Add new"
+msgstr ""
+
+#: src/components/comon/table/buttons.jsx:40
+msgid "Do you Want to delete this item?"
+msgstr ""
+
+#: src/components/comon/table/buttons.jsx:50
+msgid "Remove"
 msgstr ""

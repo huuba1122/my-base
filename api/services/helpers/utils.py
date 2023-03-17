@@ -49,3 +49,30 @@ class Utils:
             title=str(title or ""),
             description=str(description or ""),
         )
+
+
+    @staticmethod
+    def phone_to_local_format(phone_number):
+        if not phone_number:
+            return ""
+        prefix = phone_number[:3]
+        if prefix == "+84":
+            return f"0{phone_number[3:]}"
+        return phone_number
+
+    @staticmethod
+    def phone_to_canonical_format(phone_number):
+        if not phone_number:
+            return ""
+        phone_number = phone_number.replace(" ", "")
+        phone_number = phone_number.strip()
+
+        prefix = phone_number[:4]
+        if prefix == "+840":
+            return f"+84{phone_number[4:]}"
+
+        prefix = phone_number[:1]
+        if prefix == "0":
+            return f"+84{phone_number[1:]}"
+
+        return phone_number

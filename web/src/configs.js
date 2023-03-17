@@ -6,5 +6,5 @@
 
 export const BASE_API_URL = 'http://localhost:8000/api/v1/';
 
-export const LANGUAGE_DEFAULT = 'vi';
+export const LANGUAGE_DEFAULT = 'en';
 export const LOCAL_STORAGE_PREFIX = 'base_';

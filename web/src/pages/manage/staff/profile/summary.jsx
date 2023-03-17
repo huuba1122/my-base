@@ -11,17 +11,17 @@ ProfileSummary.propTypes = {
 export default function ProfileSummary({ data }) {
   return (
     <div>
-      <Row>
+      <Row className="mt-2">
         <Col span={6}>{t`Fullname`}</Col>
         <Col span={18}>{data.full_name}</Col>
       </Row>
 
-      <Row>
+      <Row className="mt-2">
         <Col span={6}>{t`Email`}</Col>
         <Col span={18}>{data.email}</Col>
       </Row>
 
-      <Row>
+      <Row className="mt-2">
         <Col span={6}>{t`Phone number`}</Col>
         <Col span={18}>{data.phone_number}</Col>
       </Row>

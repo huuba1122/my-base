@@ -3,9 +3,19 @@ import httpClient from './axios';
 // variables
 const urls = {
   profile: 'account/staff/profile/',
+  login: 'account/auth/login/',
   logout: 'account/auth/logout/',
   resetPwd: 'account/auth/reset-pwd/',
   changePwd: 'account/auth/change-pwd/'
+};
+
+/**
+ * User logout
+ * @param {Object} params
+ * @returns {Promise}
+ */
+export const userLogIn = (params) => {
+  return httpClient.post(urls.login, params);
 };
 
 /**
@@ -16,6 +26,10 @@ export const getProfile = () => {
   return httpClient.get(urls.profile);
 };
 
+/**
+ * User logout
+ * @returns {Promise}
+ */
 export const userLogout = () => {
   return httpClient.post(urls.logout);
 };
@@ -41,4 +55,13 @@ export const resetPwd = (params) => {
  */
 export const changePwd = (params) => {
   return httpClient.post(urls.changePwd, params);
+};
+
+/**
+ * Update user profile
+ * @param {Object} params
+ * @returns {Promise}
+ */
+export const updateProfile = (params) => {
+  return httpClient.put(urls.profile, params);
 };

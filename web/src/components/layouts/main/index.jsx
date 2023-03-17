@@ -5,16 +5,15 @@ import { Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
 
 import LayoutProvider from './context';
-import Sidebar from './Sidebar';
+import Sidebar from './sidebar';
 import Footer from './Footer';
-import Navbar from './NavBar';
+import Navbar from './navbar';
+
 import './index.css';
 // ----------------------------------------------------------------
 const { Content } = Layout;
 
 function LayoutComponent() {
-  console.log('Layout Component render');
-
   return (
     <LayoutProvider>
       <Layout className="bg-white main-layout">

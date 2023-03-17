@@ -51,6 +51,7 @@ function ChangePwdForm({ onChange, onLoading }) {
   };
 
   const handleSubmit = (values) => {
+    console.log('Submit', values);
     onLoading(true);
     changePwd(values)
       .then((res) => {
@@ -80,4 +81,5 @@ function ChangePwdForm({ onChange, onLoading }) {
 }
 
 ChangePwdForm.displayName = formName;
+ChangePwdForm.formName = formName;
 export default ChangePwdForm;

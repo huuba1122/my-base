@@ -1,20 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate, Link } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
 import { t } from 'ttag';
 
 // antd
-import { Layout, Row, Col, Button, Dropdown, Avatar, Space } from 'antd';
-import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
+import { Dropdown, Avatar, Space } from 'antd';
 
 // app
-import { profileSt } from '@recoil/user/profile';
-import Utils from '@src/services/helpers/utils';
 import { PRIVATE_PATHS } from '@routes/path';
 import StorageService from '@services/helpers/local-storage';
 import { userLogout } from '@src/services/api/auth';
-import { useLayoutState } from './context';
 
 // ----------------------------------------------------------------
 const colors = ['#f56a00', '#7265e6', '#ffbf00', '#00a2ae'];
@@ -39,7 +34,12 @@ UserAvatar.propTypes = {
   color: PropTypes.string
 };
 
-const DropDownUserSettings = ({ username }) => {
+// -----------------------------------------------------------
+UserSettings.propTypes = {
+  username: PropTypes.string
+};
+
+function UserSettings({ username }) {
   const navigate = useNavigate();
 
   const nodeRef = React.useRef(null);
@@ -70,46 +70,7 @@ const DropDownUserSettings = ({ username }) => {
       <UserAvatar label={username} ref={nodeRef} color={color} />
     </Dropdown>
   );
-};
-
-DropDownUserSettings.propTypes = {
-  username: PropTypes.string
-};
-
-// -------------------------------
-function Navbar() {
-  const navigate = useNavigate();
-  const { menuOpen, toggleMenu } = useLayoutState();
-  const profile = useRecoilValue(profileSt);
-
-  return (
-    <Layout.Header className="header bg-white main-navbar">
-      <Row>
-        <Col span={12}>
-          {menuOpen ? (
-            <MenuUnfoldOutlined onClick={toggleMenu} className="trigger" />
-          ) : (
-            <MenuFoldOutlined onClick={toggleMenu} className="trigger" />
-          )}
-        </Col>
-        <Col
-          span={12}
-          className="right"
-          style={{ display: 'flex', paddingRight: 20, alignItems: 'center', justifyContent: 'flex-end' }}
-        >
-          {Utils.isBlankObj(profile) ? (
-            <Button style={{ float: 'right' }} type="link" onClick={() => navigate('/login')}>
-              Login
-            </Button>
-          ) : (
-            <DropDownUserSettings username={profile.email} />
-          )}
-        </Col>
-      </Row>
-    </Layout.Header>
-  );
 }
 
-Navbar.displayName = 'Navbar';
-
-export default Navbar;
+UserSettings.displayName = 'UserSettings';
+export default UserSettings;
