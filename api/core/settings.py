@@ -29,9 +29,9 @@ DEBUG = True
 
 CORS_ORIGIN_ALLOW_ALL = True
 # ALLOWED_HOSTS = ["*"]
-ALLOWED_HOSTS = ['13.229.218.8', 'localhost']
+ALLOWED_HOSTS = ['13.229.218.8', '127.0.0.1']
 ALLOWED_ORIGINS = ['http://*', 'https://*']
-CSRF_TRUSTED_ORIGINS = ['https://my-base.test']
+CSRF_TRUSTED_ORIGINS = ['https://my-base.test', 'http://13.229.218.8']
 CSRF_COOKIE_DOMAIN="*"
 
 # Application definition
