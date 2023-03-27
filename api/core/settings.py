@@ -28,7 +28,8 @@ SECRET_KEY = 'django-insecure-)_d5+zrl#7l)i&=y*kmgzlm!-5_+nbqylvgqtwm*m!-^xwz8m^
 DEBUG = True
 
 CORS_ORIGIN_ALLOW_ALL = True
-ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['13.229.218.8', 'localhost']
 ALLOWED_ORIGINS = ['http://*', 'https://*']
 CSRF_TRUSTED_ORIGINS = ['https://my-base.test']
 CSRF_COOKIE_DOMAIN="*"
@@ -95,8 +96,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'myproject',
+        'USER': 'baseuser',
+        'PASSWORD': 'base1122',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -146,8 +151,8 @@ DEFAULT_LANGUAGE_CODE = "vi_VN"
 PUBLIC_ROOT = os.path.join(BASE_DIR, "public")
 PUBLIC_URL = "/public"
 
-STATIC_ROOT = os.path.join(PUBLIC_ROOT, "assets")
-STATIC_URL = f"{PUBLIC_URL}/assets/"
+STATIC_ROOT = os.path.join(PUBLIC_ROOT, "static")
+STATIC_URL = f"{PUBLIC_URL}/static/"
 
 
 # STATICFILES_DIRS = [
