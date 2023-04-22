@@ -17,18 +17,19 @@ function SunEditor({ error, value, onChange, placeholder, uploadTo, uid, ...othe
       formData.append('post_uid', uid);
     }
 
-    uploadAttachment(to, formData).then((res) => {
+    uploadAttachment(uploadTo, formData).then((res) => {
       // result
       const response = {
         // The response must have a "result" array.
         result: [
           {
-            url: res.data?.url,
+            url: res.url,
             name: files[0].name,
             size: files[0].size
           }
         ]
       };
+      console.log({ response });
 
       uploadHandler(response);
     });

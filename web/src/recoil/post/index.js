@@ -12,3 +12,13 @@ export const categoryOptionsSlt = selector({
     return extra?.categories || [];
   }
 });
+
+export const publicPostSt = atom({
+  key: 'publicPostSt',
+  default: {}
+});
+
+export const filterPostSt = atom({
+  key: 'filterPostSt',
+  default: ''
+});

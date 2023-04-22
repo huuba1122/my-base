@@ -2,6 +2,7 @@ import os
 from django.urls import path
 
 from .views.crud import PostViewSet
+from .views.custom import PublicPostView
 
 app_name = os.getcwd().split(os.sep)[-1]
 
@@ -19,9 +20,21 @@ EXTRA_ENDPOINT = PostViewSet.as_view({
     "delete": "remove_banner",
 })
 
+PUBLIC_BASE_ENDPOINT = PublicPostView.as_view({
+    "get": "list",
+})
+
+
+PUBLIC_PK_ENDPOINT = PublicPostView.as_view({
+    "get": "retrieve",
+})
+
 
 urlpatterns = [
    path("", BASE_ENDPOINT),
    path("<int:pk>/", PK_ENDPOINT),
-   path("<int:pk>/banner/", EXTRA_ENDPOINT)
+   path("<int:pk>/banner/", EXTRA_ENDPOINT),
+
+   path("public/", PUBLIC_BASE_ENDPOINT),
+   path("public/<str:slug>/", PUBLIC_PK_ENDPOINT),
 ]

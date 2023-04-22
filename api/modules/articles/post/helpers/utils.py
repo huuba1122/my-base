@@ -1,4 +1,5 @@
-from modules.articles.post.helpers.srs import PostSrs
+from modules.articles.post.helpers.srs import PostSrs, BriefPostSrs
+from .consts import PostStatus
 
 class PostUtils:
 
@@ -10,3 +11,10 @@ class PostUtils:
         obj = serializer.save(author=author)
 
         return obj
+    
+    @staticmethod
+    def get_other_posts_by_author(author, origin_post_id):
+        posts = author.posts.filter(
+                    status=PostStatus.ACTIVATED
+                ).exclude(id=origin_post_id)[:5]
+        return BriefPostSrs(posts, many=True).data

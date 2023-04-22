@@ -2,6 +2,7 @@ import axios from 'axios';
 import { t } from 'ttag';
 
 import { BASE_API_URL, LANGUAGE_DEFAULT } from '@src/configs';
+import Utils from '@services/helpers/utils';
 
 import StorageService from '../helpers/local-storage';
 import { redirectToLogin } from '../helpers/navigate';
@@ -27,6 +28,7 @@ const requestHandler = (request) => {
   request.withCredentials = false;
   //   request.xsrfHeaderName = 'X-CSRFToken';
   //   request.xsrfCookieName = 'csrftoken';
+  request.params = Utils.removeEmptyValueProperty(request.params);
   const accessToken = StorageService.get('accessToken');
   request.headers = {
     Authorization: accessToken ? `Bearer ${accessToken}` : undefined,

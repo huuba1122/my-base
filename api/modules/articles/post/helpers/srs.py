@@ -5,11 +5,36 @@ from django.http import QueryDict
 # app
 from services.helpers.utils import Utils
 from modules.articles.attachment.helpers.srs import AttachmentSrs
+from modules.account.staff.helpers.srs import StaffSr
 from ..models import Post
 
+class PostAbstrSrs(ModelSerializer):
+    class Meta:
+        model = Post
+        exclude = ()
 
+    
+    def to_representation(self, obj):
+        rep = super().to_representation(obj)
+        if obj.banner:
+            rep["banner"] = Utils.build_full_url(obj.banner.url)
+        return rep
 
-class PostSrs(ModelSerializer):
+class BriefPostSrs(PostAbstrSrs):
+    class Meta:
+        model = Post
+        fields = (
+            'id',
+            "uid",
+            "slug",
+            'title',
+            "banner",
+            'description',
+            'created_at',
+            'updated_at'
+        )
+
+class PostSrs(PostAbstrSrs):
     
     class Meta:
         model = Post
@@ -21,6 +46,7 @@ class PostSrs(ModelSerializer):
         rep["attachments"] = AttachmentSrs(
             obj.attachments.filter(in_content=False), many=True
         ).data
+        rep["author"] = StaffSr(obj.author).data
         return rep
 
 

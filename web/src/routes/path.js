@@ -14,8 +14,8 @@ const AUTH_PATHS = {
 const PUBLIC_PATHS = {
   home: ROOT_PUBLIC,
   post: {
-    root: path(ROOT_PUBLIC, 'post'),
-    detail: path(ROOT_PUBLIC, 'post/:id')
+    root: ROOT_PUBLIC,
+    detail: path(ROOT_PUBLIC, ':slug')
   }
 };
 

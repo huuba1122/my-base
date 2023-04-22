@@ -1,20 +1,8 @@
-import { assert, describe, it } from 'vitest';
+import { describe, it, expect } from 'vitest';
+import { removeEmpty } from '../api/axios';
 
-// Only this suite (and others marked with only) are run
-describe('suite', () => {
+describe('remove empty func test', () => {
   it('test', () => {
-    assert.equal(Math.sqrt(4), 2);
-  });
-});
-
-describe('another suite', () => {
-  it('skipped test', () => {
-    // Test skipped, as tests are running in Only mode
-    assert.equal(Math.sqrt(4), 2);
-  });
-
-  it.skip('test', () => {
-    // Only this test (and others marked with only) are run
-    assert.equal(Math.sqrt(4), 3);
+    expect(removeEmpty({ page: 1, search: '' })).toStrictEqual({ page: 1 });
   });
 });

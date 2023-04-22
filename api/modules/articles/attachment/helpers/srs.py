@@ -11,7 +11,11 @@ class AttachmentSrs(ModelSerializer):
     class Meta:
         model = Attachment
         exclude = ()
-
+    
+    def to_representation(self, obj):
+        rep = super().to_representation(obj)
+        rep["url"] = Utils.build_full_url(obj.file.url)
+        return rep
 
     def to_internal_value(self, data):
         data = data.dict() if isinstance(data, QueryDict) else data

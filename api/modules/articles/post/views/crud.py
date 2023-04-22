@@ -19,7 +19,7 @@ class PostViewSet(GenericViewSet):
     _name="post"
     permission_classes=(CustomPermission,)
     serializer_class=PostSrs
-    search_fields=("title", "description", "body", "author",)
+    search_fields=("title", "description", "body",)
 
     def list(self, request, *args, **kwargs):
         queryset = Post.objects.all()

@@ -1,10 +1,12 @@
+import re
 import uuid
 import random
 import string
 from datetime import datetime
 
-from django.utils.text import slugify
 
+from django.utils.text import slugify
+from django.conf import settings
 
 class Utils:
 
@@ -76,3 +78,9 @@ class Utils:
             return f"+84{phone_number[1:]}"
 
         return phone_number
+    
+    @staticmethod
+    def build_full_url(url):
+        if type(url) == str and not re.search("^(http|https):\/\/(\S+)", url):
+            return f"{settings.DOMAIN}/{url.lstrip('/')}"
+        return url

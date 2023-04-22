@@ -99,13 +99,17 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'myproject',
+    #     'USER': 'baseuser',
+    #     'PASSWORD': 'base1122',
+    #     'HOST': 'localhost',
+    #     'PORT': '',
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myproject',
-        'USER': 'baseuser',
-        'PASSWORD': 'base1122',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -203,11 +207,16 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'hhb.bka@gmail.com'
-# EMAIL_HOST_PASSWORD = 'gtuerkvglbkvituh' # on ubuntu
-EMAIL_HOST_PASSWORD = 'kjvnxkyzhdrejlhi' # on mac
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = '' # on mac
 
 # NOTI
 DEFAULT_VERIFY_CODE_EXPIRED_PERIOD = 90  # seconds
 APP_TITLE = 'My Django Application'
+
+# server
+ALLOWED_PROTOCOLS = ['http', 'https']
+PROTOCOL = 'http'
+HOST = 'localhost:8000'
+DOMAIN = f"{PROTOCOL}://{HOST}"
 

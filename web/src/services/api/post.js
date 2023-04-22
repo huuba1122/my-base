@@ -2,6 +2,7 @@ import httpClient from './axios';
 
 // variables
 const url = 'articles/';
+const publicUrl = 'articles/public/';
 
 /**
  * get list Post
@@ -47,4 +48,22 @@ export const updatePost = (id, data) => {
  */
 export const deletePost = (id) => {
   return httpClient.delete(`${url}${id}/`);
+};
+
+/**
+ * get public Post list
+ * @param {object} params
+ * @returns {Promise}
+ */
+export const fetchPublicPosts = (params) => {
+  return httpClient.get(publicUrl, { params });
+};
+
+/**
+ * retrieve public Post
+ * @param {string} slug
+ * @returns {Promise}
+ */
+export const retrievePublicPost = (slug) => {
+  return httpClient.get(`${publicUrl}${slug}/`);
 };

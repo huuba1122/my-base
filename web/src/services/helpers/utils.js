@@ -1,3 +1,5 @@
+import { t } from 'ttag';
+
 class Utils {
   /**
    * verify plain object
@@ -68,6 +70,23 @@ class Utils {
       .map((c, index) => (index === 0 || index === prefix.length - 1 ? c : '*'))
       .join('');
     return `${mask}@${strArr[1]}`;
+  }
+
+  /**
+   * remove empty string, null, undefined
+   * value in params get resouces
+   * @param {Object} obj
+   * @param {Array} emptyValues
+   * @returns {Object}
+   */
+  static removeEmptyValueProperty(obj, emptyValues = ['', null, undefined]) {
+    if (!Utils.isPlainObject(obj)) return obj;
+    if (!emptyValues || emptyValues.constructor !== Array) throw new Error(t`Secornd params must be an array!`);
+    return Object.fromEntries(
+      Object.entries(obj)
+        .filter(([_, value]) => !emptyValues.includes(value))
+        .map(([_, value]) => [_, Utils.isPlainObject(value) ? Utils.removeEmptyValueProperty(value) : value])
+    );
   }
 }
 

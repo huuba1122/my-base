@@ -19,3 +19,7 @@
 .global-spiner {
   z-index: 9999;
 }
+
+img {
+  max-width: 100%;
+}

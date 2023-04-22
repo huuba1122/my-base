@@ -12,8 +12,6 @@ import Utils from '@src/services/helpers/utils';
 import { useLayoutState } from '../context';
 import UserSettings from './UserSetting';
 import I18NComponent from './I18n';
-import SearchPost from './SearchPost';
-
 // -------------------------------
 function Navbar() {
   const navigate = useNavigate();
@@ -24,21 +22,18 @@ function Navbar() {
     <Layout.Header className="header bg-white main-navbar">
       <Row>
         <Col span={12}>
-          <Space size={8}>
-            {menuOpen ? (
-              <MenuUnfoldOutlined onClick={toggleMenu} className="trigger" />
-            ) : (
-              <MenuFoldOutlined onClick={toggleMenu} className="trigger" />
-            )}
-            <SearchPost />
-          </Space>
+          {menuOpen ? (
+            <MenuUnfoldOutlined onClick={toggleMenu} className="trigger" />
+          ) : (
+            <MenuFoldOutlined onClick={toggleMenu} className="trigger" />
+          )}
         </Col>
         <Col
           span={12}
           className="right"
           style={{ display: 'flex', paddingRight: 20, alignItems: 'center', justifyContent: 'flex-end' }}
         >
-          <Space size={8}>
+          <Space size={16}>
             <I18NComponent />
             {Utils.isBlankObj(profile) ? (
               <Button style={{ float: 'right' }} type="link" onClick={() => navigate('/login')}>

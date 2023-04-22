@@ -1,13 +1,13 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 // recoil state
-import { postListState } from '@src/recoil/post';
+import { publicPostSt } from '@src/recoil/post';
 
 import './index.css';
 
 let newId = 0;
 function Post() {
-  const [postList, setPostList] = useRecoilState(postListState);
+  const [postList, setPostList] = useRecoilState(publicPostSt);
 
   // state
   const [title, setTitle] = React.useState('');
