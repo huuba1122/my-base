@@ -7,4 +7,5 @@ urlpatterns = (
     path("noti/", include("modules.noti.urls", namespace="noti")),
     path("account/", include("modules.account.urls", namespace="account")),
     path("articles/", include("modules.articles.urls", namespace="article")),
+    path("config/", include("modules.configuaration.urls", namespace="configuaration")),
 )

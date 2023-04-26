@@ -16,3 +16,4 @@ api/public/media
 
 .venv
 .idea/
+*.env

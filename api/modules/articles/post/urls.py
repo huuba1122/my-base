@@ -29,6 +29,10 @@ PUBLIC_PK_ENDPOINT = PublicPostView.as_view({
     "get": "retrieve",
 })
 
+PUBLIC_EXTRA_ENDPOINT = PublicPostView.as_view({
+    "get": "most_views_posts",
+})
+
 
 urlpatterns = [
    path("", BASE_ENDPOINT),
@@ -36,5 +40,6 @@ urlpatterns = [
    path("<int:pk>/banner/", EXTRA_ENDPOINT),
 
    path("public/", PUBLIC_BASE_ENDPOINT),
+   path("public/most-view/", PUBLIC_EXTRA_ENDPOINT),
    path("public/<str:slug>/", PUBLIC_PK_ENDPOINT),
 ]

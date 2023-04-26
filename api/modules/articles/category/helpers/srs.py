@@ -38,3 +38,13 @@ class CategorySrs(serializers.ModelSerializer):
         rep = super().to_representation(obj)
         rep["parent"] = ParentSrs(obj.parent).data if obj.parent else None
         return rep
+    
+class MenuItemSrs(CategorySrs):
+
+    def get_child_categories(self, obj):
+        serializer = MenuItemSrs(
+            instance=obj.sub_categories.filter(is_menu=True),
+            many=True
+        )
+
+        return serializer.data
