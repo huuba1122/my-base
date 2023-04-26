@@ -3,6 +3,7 @@ import httpClient from './axios';
 // variables
 const url = 'articles/';
 const publicUrl = 'articles/public/';
+const mostViewUrl = 'articles/public/most-view/';
 
 /**
  * get list Post
@@ -66,4 +67,12 @@ export const fetchPublicPosts = (params) => {
  */
 export const retrievePublicPost = (slug) => {
   return httpClient.get(`${publicUrl}${slug}/`);
+};
+
+/**
+ * get list most view Post
+ * @returns {Promise}
+ */
+export const fetchMostViewPosts = () => {
+  return httpClient.get(mostViewUrl);
 };

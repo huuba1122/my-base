@@ -13,14 +13,14 @@ import './index.css';
 // ----------------------------------------------------------------
 const { Content } = Layout;
 
-function MainLayout() {
+function AdminLayout() {
   return (
     <LayoutProvider>
-      <Layout className="bg-white main-layout">
+      <Layout className="bg-white admin-layout">
         <Sidebar />
         <Layout>
           <Navbar />
-          <Content className="bg-white main-contain">
+          <Content className="bg-white admin-contain">
             <Outlet />
           </Content>
           <Footer />
@@ -30,4 +30,4 @@ function MainLayout() {
   );
 }
 
-export default MainLayout;
+export default AdminLayout;

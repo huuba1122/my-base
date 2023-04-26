@@ -1,3 +1,5 @@
+import { t } from 'ttag';
+
 export const USER_ACTIONS = {
   view: 'view',
   add: 'add',
@@ -13,3 +15,5 @@ export const MANAGEMENT_MODEL = {
   staff: 'staff',
   verify: 'verify'
 };
+
+export const DEFAULT_MENU = { id: 'ALL', title: t`All` };

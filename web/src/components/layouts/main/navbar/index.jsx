@@ -9,35 +9,44 @@ import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 // app
 import { profileSt } from '@recoil/user/profile';
 import Utils from '@src/services/helpers/utils';
+import { BREAK_POINTS } from '@services/constants/theme';
+import useMediaQuery from '@src/shared/hooks/useMediaQuery';
+
 import { useLayoutState } from '../context';
 import UserSettings from './UserSetting';
 import I18NComponent from './I18n';
 import SearchPost from './SearchPost';
 
+const navRightStyle = { display: 'flex', paddingRight: 8, alignItems: 'center', justifyContent: 'flex-end' };
+
+const LogoComponent = () => {
+  const navigate = useNavigate();
+
+  return (
+    <Button onClick={() => navigate('/')} className="main-nav-logo">
+      LOGO
+    </Button>
+  );
+};
 // -------------------------------
 function Navbar() {
   const navigate = useNavigate();
-  const { menuOpen, toggleMenu } = useLayoutState();
+  const { toggleMenu } = useLayoutState();
+  const { width: screenWidth } = useMediaQuery();
+  const isTablet = screenWidth <= BREAK_POINTS.md;
   const profile = useRecoilValue(profileSt);
 
   return (
     <Layout.Header className="header bg-white main-navbar">
-      <Row>
-        <Col span={12}>
+      <Row className="main-container">
+        <Col span={12} className="main-navbar-left">
           <Space size={8}>
-            {menuOpen ? (
-              <MenuUnfoldOutlined onClick={toggleMenu} className="trigger" />
-            ) : (
-              <MenuFoldOutlined onClick={toggleMenu} className="trigger" />
-            )}
+            {isTablet && <MenuFoldOutlined onClick={toggleMenu} className="trigger" />}
+            <LogoComponent />
             <SearchPost />
           </Space>
         </Col>
-        <Col
-          span={12}
-          className="right"
-          style={{ display: 'flex', paddingRight: 20, alignItems: 'center', justifyContent: 'flex-end' }}
-        >
+        <Col span={12} className="right" style={navRightStyle}>
           <Space size={8}>
             <I18NComponent />
             {Utils.isBlankObj(profile) ? (

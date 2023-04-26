@@ -1,0 +1,32 @@
+.relatedList {
+  background: rgb(var(--white));
+  .relatedItem {
+    display: block;
+    padding-top: 12px;
+    border-top: 1px solid var(--divider-color);
+
+    color: inherit;
+    background: var(--bg-white);
+
+    &:first-child {
+      border-top: 0;
+    }
+
+    .relatedTitle {
+      color: rgb(var(--indigo-500));
+    }
+  }
+}
+
+.mostViewList {
+  padding: 16px;
+  border-radius: 8px;
+
+  min-height: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: var(--bg-white);
+
+  @media (max-width: 1028px) {
+    display: none;
+  }
+}

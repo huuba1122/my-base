@@ -37,9 +37,9 @@ function PostForm({ data, onChange }) {
   const categoryOptions = useRecoilValue(categoryOptionsSt);
   const initialValues = Utils.isBlankObj(data) ? emptyFormData : data;
   const { id } = initialValues;
+  const [postUuid, setPostUuid] = React.useState('');
 
   const deleteBannerUrl = id ? URL_DELETE_BANNER.replace(':id', id) : '';
-  const postUuid = Utils.isBlankObj(data) ? newUid : data.uid;
 
   const [form] = Form.useForm();
   const [attachments, setAttachments] = React.useState(initialValues?.attachments || []);
@@ -130,6 +130,11 @@ function PostForm({ data, onChange }) {
       notification.error({ message: t`${actionMsg} post failed!` });
     }
   };
+
+  React.useEffect(() => {
+    const newUid = data?.uid || uuid4();
+    setPostUuid(newUid);
+  }, [data]);
 
   return (
     <Form

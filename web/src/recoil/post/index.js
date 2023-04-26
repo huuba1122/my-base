@@ -20,5 +20,10 @@ export const publicPostSt = atom({
 
 export const filterPostSt = atom({
   key: 'filterPostSt',
-  default: ''
+  default: {
+    search: '',
+    page: 1,
+    author: null,
+    categories: ''
+  }
 });

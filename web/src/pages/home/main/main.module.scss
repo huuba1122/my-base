@@ -1,0 +1,39 @@
+.main-content {
+  --footer-height: 100px;
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  min-height: calc(100vh - var(--footer-height));
+
+  padding: calc(var(--main-navbar-height) + 16px) 8px 16px;
+
+  .left-sibar {
+    width: 300px;
+    padding-top: 16px;
+    background: #fff;
+    border-radius: 8px;
+
+    span {
+      font-size: 16px !important;
+      font-weight: 500;
+      filter: contrast(0.8);
+    }
+  }
+
+  .content {
+    flex: 1;
+  }
+
+  @media (min-width: 769px) and (max-width: 1200px) {
+    .left-sibar {
+      // display: none;
+      width: 250px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .left-sibar {
+      display: none;
+    }
+  }
+}

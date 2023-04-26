@@ -5,29 +5,25 @@ import { Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
 
 import LayoutProvider from './context';
-import Sidebar from './sidebar';
 import Footer from './Footer';
 import Navbar from './navbar';
 
-import './index.css';
+import './index.scss';
 // ----------------------------------------------------------------
-const { Content } = Layout;
+const { Content, Header } = Layout;
 
-function AdminLayout() {
+function MainLayout() {
   return (
     <LayoutProvider>
-      <Layout className="bg-white main-layout">
-        <Sidebar />
-        <Layout>
-          <Navbar />
-          <Content className="bg-white main-contain">
-            <Outlet />
-          </Content>
-          <Footer />
-        </Layout>
+      <Layout>
+        <Navbar />
+        <Content className="main-container">
+          <Outlet />
+        </Content>
+        <Footer />
       </Layout>
     </LayoutProvider>
   );
 }
 
-export default AdminLayout;
+export default MainLayout;

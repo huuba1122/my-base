@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom';
 import { PUBLIC_PATHS } from '@routes/path';
 
 import ElipsisText from '@components/comon/table/ellipsis-text';
+import LocalSpiner from '@src/components/comon/LocalSpiner';
+
+import './main.scss';
 
 // ----------------------------------------------------------------
 PostItem.propTypes = {
@@ -20,16 +23,12 @@ PostItem.defaultProps = {
 function PostItem({ item }) {
   return (
     <Link to={PUBLIC_PATHS.post.detail.replace(':slug', item.slug)} className="post-item text-primary">
-      {/* <div className="post-item"> */}
-      {/* {item?.banner ? ( */}
       <div className="post-banner">
         <img src={item.banner || 'https://picsum.photos/seed/picsum/1000/600'} alt="post's banner" />
       </div>
-      {/* ) : (
-        <div className="post-banner default-banner" />
-      )} */}
+
       <div className="post-info">
-        <h2 className="post-title">Title: {item.title}</h2>
+        <h2 className="post-title">{item.title}</h2>
         <div className="post-des">
           <ElipsisText>
             <p>{item.description}</p>
@@ -40,7 +39,6 @@ function PostItem({ item }) {
           <li>{item.createdAt || dayjs().format('MMMM DD/YYYY')}</li>
         </ul>
       </div>
-      {/* </div> */}
     </Link>
   );
 }
@@ -53,14 +51,16 @@ PostList.defaultProps = {
   items: []
 };
 
-function PostList({ items }) {
+function PostList({ items, loading, isReady }) {
   return (
     <div className="post-list">
       {items?.length ? (
         items.map((item) => <PostItem key={item.id} item={item} />)
       ) : (
-        <div className="no-post">{t`No post founded`}</div>
+        <div className="post-list">{isReady && <div className="no-post">{t`No post founded`}</div>}</div>
       )}
+
+      {isReady && loading && <LocalSpiner />}
     </div>
   );
 }

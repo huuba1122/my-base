@@ -19,9 +19,9 @@ function Navbar() {
   const profile = useRecoilValue(profileSt);
 
   return (
-    <Layout.Header className="header bg-white main-navbar">
+    <Layout.Header className="header bg-white admin-navbar">
       <Row>
-        <Col span={12}>
+        <Col span={12} style={{ paddingLeft: 16 }}>
           {menuOpen ? (
             <MenuUnfoldOutlined onClick={toggleMenu} className="trigger" />
           ) : (

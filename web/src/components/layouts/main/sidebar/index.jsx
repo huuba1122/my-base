@@ -16,65 +16,63 @@ import Utils from '@services/helpers/utils';
 import { PRIVATE_PATHS } from '@routes/path';
 import { MANAGEMENT_MODEL, USER_ACTIONS } from '@services/constants';
 import useMediaQuery from '@shared/hooks/useMediaQuery';
+
+import { menuConfigSlt } from '@recoil/config';
 import { useLayoutState } from '../context';
 import MobileSideBar from './MobileSidebar';
+
+const transferMenuItem = (menu) => {
+  const { id: key, title: label, sub_categories: subMenus = [] } = menu;
+  const children = subMenus.map(transferMenuItem);
+  const result = { key, label };
+  if (children.length) {
+    result.children = children;
+  }
+
+  return result;
+};
 
 // ----------------------------------------------------------------
 const SidebarMenu = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { menuOpen } = useLayoutState();
-  const userPems = useRecoilValue(permissionsSlt);
-  const locale = useRecoilValue(localeState);
+  const menuConfig = useRecoilValue(menuConfigSlt);
 
   const { isMobile } = useMediaQuery();
 
-  const menuItems = React.useMemo(() => {
-    const items = [
-      {
-        key: PRIVATE_PATHS.root,
-        label: t`Profile`,
-        icon: <UserOutlined />,
-        active: true
-      },
-      {
-        key: PRIVATE_PATHS.post.root,
-        label: t`Article`,
-        icon: <ReadOutlined />,
-        active: PemUtils.hasPem(userPems, MANAGEMENT_MODEL.post, USER_ACTIONS.view)
-      },
-      {
-        key: PRIVATE_PATHS.category.root,
-        label: t`Category`,
-        icon: <FolderOutlined />,
-        active: PemUtils.hasPem(userPems, MANAGEMENT_MODEL.category, USER_ACTIONS.view)
-      },
-      {
-        key: PRIVATE_PATHS.staff.root,
-        label: t`Staff`,
-        icon: <TeamOutlined />,
-        active: PemUtils.hasPem(userPems, MANAGEMENT_MODEL.staff, USER_ACTIONS.view)
-      },
-      {
-        key: PRIVATE_PATHS.group.root,
-        label: t`Group`,
-        icon: <UsergroupAddOutlined />,
-        active: PemUtils.hasPem(userPems, MANAGEMENT_MODEL.group, USER_ACTIONS.view)
-      }
-    ];
+  const [openKeys, setOpenKeys] = React.useState([]);
 
-    return items.filter((item) => item.active).map((item) => Utils.removeKeysInObject(item, ['active']));
-  }, [userPems, locale]);
+  const menuItems = React.useMemo(() => {
+    return menuConfig.map(transferMenuItem);
+  }, [menuConfig]);
+
+  const onOpenChange = (keys) => {
+    const rootSubmenuKeys = menuItems.map((item) => item.key);
+    const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+
+    console.log({ keys, latestOpenKey, rootSubmenuKeys });
+    if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+      setOpenKeys(keys);
+    } else {
+      setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+    }
+  };
+
+  const handleClickMenu = (item) => {
+    console.log('clicked item: ', item);
+  };
 
   if (isMobile)
     return (
       <MobileSideBar>
         <Menu
-          theme="dark"
           mode="inline"
-          selectedKeys={[location.pathname]}
+          // selectedKeys={[location.pathname]}
           items={menuItems}
-          onClick={(item) => navigate(item.key)}
+          onClick={handleClickMenu}
+          openKeys={openKeys}
+          onOpenChange={onOpenChange}
         />
       </MobileSideBar>
     );
@@ -83,11 +81,12 @@ const SidebarMenu = () => {
     <Layout.Sider trigger={null} collapsible collapsed={menuOpen}>
       <div className="logo" />
       <Menu
-        theme="dark"
         mode="inline"
-        selectedKeys={[location.pathname]}
+        // selectedKeys={[location.pathname]}
         items={menuItems}
-        onClick={(item) => navigate(item.key)}
+        onClick={handleClickMenu}
+        openKeys={openKeys}
+        onOpenChange={onOpenChange}
       />
     </Layout.Sider>
   );

@@ -16,17 +16,13 @@ const transformFiles = (files) => {
 // ----------------------------------------------------------------
 const ArticleAttachment = ({ files, onChange }) => {
   const fileList = transformFiles(files);
-  console.log({ files });
 
   const handleUpload = (input) => {
-    console.log({ input });
     onChange(input.fileList);
   };
 
   const onConfirm = (file) => {
-    console.log('remove ', file);
     const index = fileList.indexOf(file);
-    console.log('index', index);
     const newFileList = fileList.slice();
     newFileList.splice(index, 1);
     onChange(newFileList);
