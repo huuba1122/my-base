@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import environ
 import os
 from pathlib import Path
 from datetime import timedelta
@@ -17,6 +17,9 @@ from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# loading environment variables
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -28,8 +31,14 @@ SECRET_KEY = 'django-insecure-)_d5+zrl#7l)i&=y*kmgzlm!-5_+nbqylvgqtwm*m!-^xwz8m^
 DEBUG = True
 
 CORS_ORIGIN_ALLOW_ALL = True
-# ALLOWED_HOSTS = ["*"]
-ALLOWED_HOSTS = ['13.229.218.8', '127.0.0.1', 'localhost']
+
+ALLOWED_HOSTS = [
+    '13.229.218.8',
+    '127.0.0.1',
+    'localhost',
+    'fresher.fun',
+    'www.fresher.fun'
+]
 # ALLOWED_ORIGINS = ['http://*', 'https://*']
 # CSRF_TRUSTED_ORIGINS = ['https://my-base.test', 'http://13.229.218.8']
 # CSRF_COOKIE_DOMAIN="*"
@@ -99,18 +108,18 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'myproject',
-    #     'USER': 'baseuser',
-    #     'PASSWORD': 'base1122',
-    #     'HOST': 'localhost',
-    #     'PORT': '',
-    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
 }
 
 
@@ -206,17 +215,17 @@ REST_FRAMEWORK = {
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = '' # on mac
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 # NOTI
 DEFAULT_VERIFY_CODE_EXPIRED_PERIOD = 90  # seconds
-APP_TITLE = 'My Django Application'
+APP_TITLE = env('APP_TITLE')
 
 # server
-ALLOWED_PROTOCOLS = ['http', 'https']
-PROTOCOL = 'http'
-HOST = 'localhost:8000'
+ALLOWED_PROTOCOLS = env('ALLOWED_PROTOCOLS').split(',')
+PROTOCOL = env('PROTOCOL')
+HOST = env('HOST')
 DOMAIN = f"{PROTOCOL}://{HOST}"
 
